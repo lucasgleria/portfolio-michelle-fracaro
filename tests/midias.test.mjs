@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tags, existe, dimensoesWebp } from './pagina.mjs';
+import { tags, existe, dimensoesWebp, dimensoesMp4 } from './pagina.mjs';
 
 test('mídias copiadas existem', () => {
   for (const s of ['tgi-da-ausencia-a-presenca', 'rebel-noise', 'conexoes', 'icesp', 'figurino-ele-me-bebeu',
@@ -26,5 +26,13 @@ test('imagens têm alt, tamanho real e carregamento preguiçoso', () => {
     assert.equal(Number(a.height), h, a.src);
     assert.equal(a.loading, 'lazy');
     assert.equal(a.decoding, 'async');
+  }
+});
+
+test('vídeos têm o tamanho real do arquivo', () => {
+  for (const a of tags('video')) {
+    const { w, h } = dimensoesMp4(a.src);
+    assert.equal(Number(a.width), w, a.src);
+    assert.equal(Number(a.height), h, a.src);
   }
 });

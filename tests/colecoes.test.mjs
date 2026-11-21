@@ -21,3 +21,11 @@ test('cards abrem o post do Instagram em outra aba', () => {
     assert.match(a.rel, /noopener/);
   }
 });
+
+test('cada card leva ao post certo e avisa que abre em nova aba', () => {
+  const POSTS = ['DZ6G2uDs5EC', 'DSTcjAMj4sw', 'DCzD9RwuH1y', 'C-S3kVzu9cL', 'C-S3_S5usYF',
+                 'DHVnm1KRWLC', 'C-S0mEWOPK_', 'DDM352pu8ma'];
+  const links = tags('a', secao('colecoes'));
+  assert.deepEqual(links.map(a => a.href), POSTS.map(c => `https://www.instagram.com/p/${c}/`));
+  links.forEach((a, i) => assert.equal(a['aria-label'], `${TITULOS[i]}, abre o post no Instagram em nova aba`));
+});

@@ -34,3 +34,11 @@ export function dimensoesWebp(caminho) {
   if (tipo === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
   throw new Error(`WebP não suportado: ${caminho}`);
 }
+
+export function dimensoesMp4(caminho) {
+  // caixa tkhd da trilha de vídeo: largura e altura em ponto fixo 16.16 nos últimos 8 bytes
+  const b = readFileSync(join(raiz, caminho));
+  const inicio = b.lastIndexOf('tkhd') - 4;
+  const fim = inicio + b.readUInt32BE(inicio);
+  return { w: b.readUInt32BE(fim - 8) >>> 16, h: b.readUInt32BE(fim - 4) >>> 16 };
+}
