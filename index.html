@@ -106,12 +106,8 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 /* Em movimento (vídeos verticais) */
 .videos{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,22vw,280px);gap:20px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
 .video{scroll-snap-align:start;display:grid;gap:10px}
-.video .foto{aspect-ratio:9/16;background-size:200% 200%;animation:balanco 9s ease-in-out infinite alternate}
-.video:nth-child(2) .foto{animation-delay:-3s}.video:nth-child(3) .foto{animation-delay:-6s}
-.play{position:absolute;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;border:1px solid var(--luz);display:grid;place-items:center;background:rgba(10,21,41,.35)}
-.play::before{content:"";border-left:14px solid var(--luz);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.video .foto{aspect-ratio:9/16}
 .video span{font-size:14px;color:var(--tule)}
-@keyframes balanco{from{background-position:0% 40%}to{background-position:100% 60%}}
 
 /* Bastidores */
 .processo{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0;counter-reset:passo}
@@ -268,13 +264,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
 <section id="movimento" aria-labelledby="t-movimento" style="padding-top:0">
   <div class="cabeca">
     <h2 id="t-movimento">Em movimento</h2>
-    <p>Os vídeos verticais que gravo para as redes, mostrando como cada peça se comporta no corpo.</p>
+    <p>As peças no corpo, em vídeo, começando pela coleção de graduação.</p>
   </div>
   <div class="videos">
-    <div class="video"><div class="foto f-cetim"><span class="play" aria-hidden="true"></span></div><span>Giro com a saia da formatura</span></div>
-    <div class="video"><div class="foto f-tule"><span class="play" aria-hidden="true"></span></div><span>Camadas de tule na luz</span></div>
-    <div class="video"><div class="foto f-plisse"><span class="play" aria-hidden="true"></span></div><span>Plissado em movimento</span></div>
-    <div class="video"><div class="foto f-renda"><span class="play" aria-hidden="true"></span></div><span>Prova no ateliê</span></div>
+    <div class="video"><div class="foto"><video src="assets/video/tgi-movimento.mp4" poster="assets/video/tgi-movimento.jpg" width="640" height="1136" controls muted playsinline preload="metadata" aria-label="Vídeo da coleção Da Ausência à Presença"></video></div><span>Da Ausência à Presença em movimento</span></div>
   </div>
 </section>
 
@@ -290,6 +283,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
     <li><div class="foto f-plisse" data-legenda="Costura"></div><h3>Costura</h3><p>Montagem da peça piloto no ateliê.</p></li>
     <li><div class="foto f-cetim" data-legenda="Prova"></div><h3>Prova</h3><p>Ajustes com a peça no corpo, inclusive dançando.</p></li>
   </ol>
+  <p style="margin-top:32px"><a href="https://youtu.be/TTBEE9axsPk" target="_blank" rel="noopener">Ver o processo da coleção Conexões no YouTube</a></p>
 </section>
 
 <section class="clara" id="conquistas">
@@ -298,10 +292,9 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
     <p class="suave">Marcos da minha trajetória na moda.</p>
   </div>
   <ol class="linha-tempo">
-    <li><time datetime="2026">2026</time><h3>Formatura em Design de Moda</h3><p>Apresentação da coleção de conclusão de curso.</p></li>
-    <li><time datetime="2025">2025</time><h3>Primeiras peças em 3D</h3><p>Início da modelagem digital como parte do processo de criação.</p></li>
-    <li><time datetime="2023">2023</time><h3>Desfile solidário</h3><p>Projeto de extensão da faculdade com roupas feitas para pacientes em tratamento.</p></li>
-    <li><time datetime="2023">2023</time><h3>Canal sobre moda consciente</h3><p>Conteúdo para aproximar as pessoas do impacto do que vestem.</p></li>
+    <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de conclusão do curso de Estilismo na Santa Marcelina.</p></li>
+    <li><time datetime="2024">2024</time><h3>Projeto ICESP</h3><p>Roupas de papel criadas para celebrar o fim do tratamento de pacientes com câncer.</p></li>
+    <li><time datetime="2023">2023</time><h3>RevelarSP entre os destaques</h3><p>Selecionado entre os 12 melhores projetos do 1º semestre de 2023 da Santa Marcelina.</p></li>
   </ol>
 </section>
 
