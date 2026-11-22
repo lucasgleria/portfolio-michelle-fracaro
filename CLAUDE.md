@@ -7,6 +7,6 @@
 Contexto, acordo, feedback dela e prazo (entrega antes do Natal de 2026) estão no vault:
 `C:\Users\lucas\vault-template - Copia\lux\03-Projetos\Portfólio de moda — Michelle.md`
 
-- `index.html`: demo (página única, three.js r128 via cdnjs). Manequim de moulage 3D com saia de tule; paleta azul escuro (predominante) + azul claro, detalhes em branco e preto.
+- `index.html`: demo (página única, three.js r128 via cdnjs). Manequim de moulage 3D com saia de tule; Coleções é um varal que se curva e balança com a rolagem (referência: meech213.com) e cada card abre o projeto num `<dialog>`; uma agulha de costura embaixo serve de menu. Paleta azul escuro (predominante) + azul claro, detalhes em branco e preto.
 - Fotos, vídeo e coleções vêm do Instagram (`assets/`, copiados de `instagram-michelle/`, fora do git); o que ainda falta confirmar com ela está em `docs/conteudo-a-confirmar.md`. Testes: `node --test "tests/*.test.mjs"`.
 - Versão publicada: https://claude.ai/artifact/C7keqcYSZNLQBM7RdYP57M

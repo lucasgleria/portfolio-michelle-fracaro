@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: um palco noturno. O manequim 3D é o único gesto forte; o resto segue a grade de um programa de espetáculo, alinhado à esquerda. */
+/* Layout: um palco noturno. O manequim 3D abre a página; Coleções é um varal de fotos que ondula como tecido ao rolar,
+   e uma agulha embaixo aponta a seção atual. O resto segue a grade de um programa de espetáculo, alinhado à esquerda. */
 :root{
   --palco:#0F1E3A;      /* azul escuro predominante */
   --palco-fundo:#0A1529;
@@ -33,14 +34,27 @@ a{color:inherit}
 h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.05}
 p{margin:0}
 
-/* Navegação */
-.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--gutter);background:rgba(15,30,58,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+/* Topo */
+.topo{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--gutter);border-bottom:1px solid var(--linha);font-size:15px}
 .marca{font-family:var(--display);font-size:24px;text-decoration:none;letter-spacing:.01em}
 .previa{font-size:12px;border:1px solid var(--linha);border-radius:99px;padding:2px 10px;margin-left:12px;color:var(--tule);vertical-align:middle}
-.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:26px;font-size:15px}
-.nav a{text-decoration:none;opacity:.8}
-.nav a:hover{opacity:1}
-@media (max-width:820px){.nav ul{display:none}}
+.topo>a:last-child{text-decoration:none;opacity:.8}
+.topo>a:last-child:hover{opacity:1}
+
+/* Mostrador: as seções num arco e uma agulha de costura que aponta a atual */
+.mostrador{--rx:210px;--ry:92px;--halo:rgba(10,21,41,.86);--halo2:rgba(10,21,41,.55);--tinta:var(--tule);--ativa:var(--branco);position:fixed;left:50%;bottom:0;z-index:30;width:min(560px,100vw);height:140px;transform:translateX(-50%);pointer-events:none;transition:opacity .3s,visibility .3s}
+.mostrador::before{content:"";position:absolute;left:50%;bottom:-150px;width:118%;height:300px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,var(--halo) 62%,var(--halo2) 82%,transparent);transition:background .4s}
+.mostrador.claro{--halo:rgba(234,242,251,.97);--halo2:rgba(234,242,251,.75);--tinta:var(--palco);--ativa:var(--preto)}
+.mostrador ul{list-style:none;margin:0;padding:0}
+.mostrador li{position:absolute;left:calc(50% + sin(var(--a)) * var(--rx));bottom:calc(16px + cos(var(--a)) * var(--ry));transform:translate(-50%,50%)}
+.mostrador a{pointer-events:auto;display:block;padding:4px 6px;font-family:var(--display);font-size:18px;text-decoration:none;white-space:nowrap;color:var(--tinta);opacity:.62;transition:opacity .3s,color .3s}
+.mostrador a:hover{opacity:1}
+.mostrador a[aria-current]{color:var(--ativa);opacity:1}
+.agulha{position:absolute;left:50%;bottom:16px;width:10px;height:62px;color:var(--tinta);margin-left:-5px;transform-origin:50% 100%;transform:rotate(var(--agulha,-90deg));transition:transform .7s cubic-bezier(.3,1.35,.5,1)}
+.agulha svg{display:block;width:100%;height:100%;overflow:visible}
+html:has(dialog[open]) .mostrador,body:has(form :focus) .mostrador{opacity:0}
+html:has(dialog[open]){overflow:hidden}
+@media (max-width:820px){.mostrador{--rx:150px;--ry:66px;height:104px}.mostrador[data-secao="inicio"]{opacity:0;visibility:hidden}.mostrador a{font-size:15px}.agulha{height:42px}}
 
 /* Abertura */
 .abertura{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:center;gap:24px;padding:48px var(--gutter) 40px;background:radial-gradient(ellipse 45% 70% at 72% 45%, rgba(168,199,230,.16), transparent 70%), var(--palco);overflow:hidden}
@@ -71,15 +85,9 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .clara{background:var(--luz);color:var(--preto)}
 .clara .cabeca p,.clara .suave{color:#2B4466}
 
-/* Tecidos (marcadores de foto) */
+/* Fotos */
 .foto{position:relative;overflow:hidden;border-radius:2px;background:var(--palco-fundo)}
 .foto img,.foto video{width:100%;height:100%;object-fit:cover;display:block}
-.foto[data-legenda]::after{content:attr(data-legenda);position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--luz);background:rgba(10,21,41,.55);padding:3px 9px;border-radius:99px}
-.f-plisse{background:repeating-linear-gradient(90deg,#24426F 0 9px,#3B5F92 9px 13px,#1A3157 13px 22px)}
-.f-cetim{background:linear-gradient(115deg,#13284B 10%,#7EA5D1 38%,#1B3561 52%,#A8C7E6 70%,#16305A 92%)}
-.f-renda{background:radial-gradient(circle,transparent 0 6px,rgba(234,242,251,.5) 6.5px 7.5px,transparent 8px) 0 0/22px 22px, radial-gradient(circle,rgba(234,242,251,.35) 0 2px,transparent 2.5px) 11px 11px/22px 22px, #1A3157}
-.f-linho{background:repeating-linear-gradient(0deg,rgba(234,242,251,.10) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(234,242,251,.10) 0 1px,transparent 1px 5px),#2C4B78}
-.f-papel{background:repeating-linear-gradient(0deg,rgba(15,30,58,.08) 0 1px,transparent 1px 26px),#F7FAFE}
 
 /* Sobre */
 .sobre{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:center}
@@ -92,33 +100,57 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .fatos dd{margin:4px 0 0;font-family:var(--display);font-size:22px}
 @media (max-width:820px){.sobre{grid-template-columns:1fr}.fatos{grid-template-columns:1fr}}
 
-/* Coleções */
-.colecoes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
-.peca{grid-column:span 4;display:grid;gap:14px;text-decoration:none}
-.peca.grande{grid-column:span 8}
-.peca.grande .foto{aspect-ratio:16/10}
-.peca .foto{aspect-ratio:4/5;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.peca:hover .foto{transform:scale(.985)}
-.peca h3{font-size:28px}
-.peca .meta{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--tule)}
-.peca p{font-size:15px;max-width:48ch;opacity:.85}
-@media (max-width:820px){.peca,.peca.grande{grid-column:span 12}.peca.grande .foto{aspect-ratio:4/5}}
+/* Coleções: varal de fotos. Cada peça tem altura (--h, em % da tela), proporção (--r), desnível (--y) e inclinação próprios;
+   o script curva a fileira e faz as fotos balançarem com a velocidade da rolagem. */
+#colecoes{padding-left:0;padding-right:0}
+#colecoes .cabeca{padding:0 var(--gutter)}
+.trilho{position:relative;list-style:none;margin:0;display:flex;align-items:flex-start;gap:clamp(28px,4vw,72px);padding:12px var(--gutter) 40px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--linha) transparent}
+.peca{flex:none;position:relative;margin-top:calc(var(--y) * 1svh);scroll-snap-align:center;transform-origin:50% 0;
+  transform:perspective(1300px) rotateY(var(--curva,0deg)) scale(var(--longe,1)) rotate(var(--inclina)) skewX(var(--balanco,0deg))}
+.peca .foto{height:clamp(220px,calc(var(--h) * 1svh),720px);aspect-ratio:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.peca h3{position:absolute;left:7%;bottom:9%;max-width:86%;font-size:clamp(30px,3.3vw,54px);font-style:italic;line-height:.95;color:var(--tinta,var(--branco));transform:rotate(-6deg);transform-origin:0 100%;text-shadow:var(--sombra,0 2px 20px rgba(0,0,0,.5));pointer-events:none}
+.peca .meta{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-size:14px;color:var(--tule)}
+.abrir{position:absolute;inset:0;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:2px}
+.peca:hover .foto img{transform:scale(1.03)}
+.peca .foto img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:820px){.peca .foto{height:auto;width:calc(var(--h) * 1.3vw)}}
+/* No desktop o varal fica preso na tela e a rolagem vertical o leva para o lado */
+.varal-ativo{height:var(--altura-varal,auto);padding-top:0;padding-bottom:0}
+.varal-ativo .palco-varal{position:sticky;top:0;height:100svh;overflow:hidden;padding-top:clamp(32px,8vh,96px)}
+.varal-ativo .peca{margin-top:calc(var(--y) * .6svh)}
+.varal-ativo .peca .foto{height:clamp(200px,calc(var(--h) * .82svh),640px)}
+.varal-ativo .trilho{overflow:visible;padding-bottom:150px;transform:translate3d(var(--x,0px),0,0);will-change:transform}
+.varal-ativo .cabeca{margin-bottom:clamp(16px,3vh,40px)}
 
-/* Em movimento (vídeos verticais) */
-.videos{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,22vw,280px);gap:20px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
-.video{scroll-snap-align:start;display:grid;gap:10px}
-.video .foto{aspect-ratio:9/16}
-.video span{font-size:14px;color:var(--tule)}
+/* Projeto aberto (diálogo em tela cheia) */
+.projeto{width:100vw;height:100svh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--palco-fundo);color:var(--luz)}
+.projeto::backdrop{background:var(--palco-fundo)}
+.interno{position:relative;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,1fr);height:100%}
+.galeria{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%;background:var(--preto)}
+.galeria img{flex:none;width:100%;height:100%;object-fit:contain;scroll-snap-align:center}
+.ficha{display:flex;flex-direction:column;justify-content:center;gap:20px;padding:clamp(28px,4vw,64px);border-left:1px solid var(--linha);overflow:auto}
+.ficha .meta{display:flex;gap:24px;font-size:14px;color:var(--tule)}
+.ficha h2{font-size:clamp(44px,4.8vw,80px);font-style:italic}
+.ficha p:not(.meta){max-width:44ch}
+.passar{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--tule);font-variant-numeric:tabular-nums}
+.passar button,.fechar{font:inherit;font-size:14px;color:var(--luz);background:none;border:1px solid var(--linha);border-radius:99px;padding:8px 16px;cursor:pointer}
+.passar button:hover,.fechar:hover{border-color:var(--tule)}
+.passar button:disabled{opacity:.35;cursor:default}
+.fechar{position:absolute;top:18px;right:18px;background:rgba(10,21,41,.7)}
+@media (max-width:820px){
+  .interno{grid-template-columns:1fr;grid-template-rows:62svh auto;height:auto;min-height:100%}
+  .ficha{border-left:0;justify-content:flex-start;padding-bottom:48px}
+}
+::view-transition-group(foto-aberta){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
 
 /* Bastidores */
-.processo{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0;counter-reset:passo}
-.processo li{display:grid;gap:12px;counter-increment:passo}
-.processo .foto{aspect-ratio:3/4}
-.processo li:nth-child(even) .foto{margin-top:48px}
+.processo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,28px);list-style:none;margin:0;padding:0;counter-reset:passo}
+.processo li{display:grid;gap:12px;align-content:start;counter-increment:passo}
+.processo .foto{aspect-ratio:4/5}
 .processo h3{font-size:22px}
 .processo h3::before{content:counter(passo) ". ";color:var(--tule)}
 .processo p{font-size:14px;opacity:.85}
-@media (max-width:980px){.processo{grid-template-columns:repeat(2,minmax(0,1fr))}.processo li:nth-child(even) .foto{margin-top:0}}
+@media (max-width:980px){.processo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* Conquistas */
 .linha-tempo{list-style:none;margin:0;padding:0;border-top:1px solid rgba(15,30,58,.18)}
@@ -145,7 +177,7 @@ form .botao{justify-self:start;cursor:pointer;font-family:inherit}
 .aviso{font-size:15px;color:var(--tule);min-height:1.6em}
 @media (max-width:820px){.contato{grid-template-columns:1fr}}
 
-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:32px var(--gutter);border-top:1px solid var(--linha);font-size:14px;color:var(--tule)}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:32px var(--gutter) 150px;border-top:1px solid var(--linha);font-size:14px;color:var(--tule)}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition:none !important}
@@ -155,15 +187,22 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
 </head>
 <body>
 
-<nav class="nav" aria-label="Seções">
+<div class="topo">
   <a class="marca" href="#inicio">Michelle<span class="previa">prévia</span></a>
+  <a href="https://www.instagram.com/michelle_fracaro/" target="_blank" rel="noopener">Instagram</a>
+</div>
+
+<nav class="mostrador" aria-label="Seções" data-secao="inicio">
   <ul>
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#colecoes">Coleções</a></li>
-    <li><a href="#bastidores">Bastidores</a></li>
-    <li><a href="#conquistas">Conquistas</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li style="--a:-72deg"><a href="#sobre">Sobre</a></li>
+    <li style="--a:-36deg"><a href="#colecoes">Coleções</a></li>
+    <li style="--a:0deg"><a href="#bastidores">Bastidores</a></li>
+    <li style="--a:36deg"><a href="#conquistas">Conquistas</a></li>
+    <li style="--a:72deg"><a href="#contato">Contato</a></li>
   </ul>
+  <div class="agulha" aria-hidden="true">
+    <svg viewBox="0 0 10 100" preserveAspectRatio="none"><polygon points="5,0 6.3,22 5.7,100 4.3,100 3.7,22" fill="currentColor"/><ellipse cx="5" cy="84" rx=".7" ry="6" style="fill:var(--halo)"/><circle cx="5" cy="100" r="3.2" style="fill:var(--ativa)"/></svg>
+  </div>
 </nav>
 
 <header class="abertura" id="inicio">
@@ -205,84 +244,67 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
   </div>
 </section>
 
-<section id="colecoes">
-  <div class="cabeca">
-    <h2>Coleções</h2>
-    <p>Projetos do curso de Estilismo e alguns extras, do primeiro croqui à foto final. Cada card abre o post original.</p>
-  </div>
-  <div class="colecoes">
-    <a class="peca grande" href="https://www.instagram.com/p/DZ6G2uDs5EC/" target="_blank" rel="noopener" aria-label="Da Ausência à Presença, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/tgi-da-ausencia-a-presenca.webp" alt="Croquis da coleção Da Ausência à Presença" width="1080" height="988" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Projeto de graduação</span><span>2026</span></div>
-      <h3>Da Ausência à Presença</h3>
-      <p>Moda como narrativa de reconexão humana: a falta de amor como ferida e o cuidado como a cicatriz que fica.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/DSTcjAMj4sw/" target="_blank" rel="noopener" aria-label="Rebel Noise, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Coleção em jeans</span><span>2025</span></div>
-      <h3>Rebel Noise</h3>
-      <p>O rock dos anos 70 e 80 em jeans, entre o peso do hard rock e o brilho do glam.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/DCzD9RwuH1y/" target="_blank" rel="noopener" aria-label="Conexões, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Coleção · 4º semestre</span><span>2024</span></div>
-      <h3>Conexões</h3>
-      <p>Pequenos detalhes que se enlaçam e se unem para criar formas.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/C-S3kVzu9cL/" target="_blank" rel="noopener" aria-label="Projeto ICESP, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Moda e cuidado</span><span>2024</span></div>
-      <h3>Projeto ICESP</h3>
-      <p>Roupas de papel com guizos que lembram o sino tocado no fim da radioterapia.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/C-S3_S5usYF/" target="_blank" rel="noopener" aria-label="Ele me bebeu, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/figurino-ele-me-bebeu.webp" alt="Figurino inspirado no conto Ele me bebeu" width="720" height="827" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Projeto de figurino</span><span>2024</span></div>
-      <h3>Ele me bebeu</h3>
-      <p>Figurino baseado no conto de Clarice Lispector.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/DHVnm1KRWLC/" target="_blank" rel="noopener" aria-label="Editorial, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Fotografia de moda</span><span>2025</span></div>
-      <h3>Editorial</h3>
-      <p>Fotografia, edição e styling feitos em grupo na disciplina de Fotografia de Moda.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/C-S0mEWOPK_/" target="_blank" rel="noopener" aria-label="RevelarSP, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Roupa de papel</span><span>2023</span></div>
-      <h3>RevelarSP</h3>
-      <p>As culturas do Bom Retiro em linhas e cores; entre os 12 melhores projetos do semestre.</p>
-    </a>
-    <a class="peca" href="https://www.instagram.com/p/DDM352pu8ma/" target="_blank" rel="noopener" aria-label="Anel Paralelo, abre o post no Instagram em nova aba">
-      <div class="foto"><img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async"></div>
-      <div class="meta"><span>Joalheria</span><span>2024</span></div>
-      <h3>Anel Paralelo</h3>
-      <p>Anel em prata feito como extra, fora do currículo.</p>
-    </a>
-  </div>
-</section>
-
-<section id="movimento" aria-labelledby="t-movimento" style="padding-top:0">
-  <div class="cabeca">
-    <h2 id="t-movimento">Em movimento</h2>
-    <p>As peças no corpo, em vídeo, começando pela coleção de graduação.</p>
-  </div>
-  <div class="videos">
-    <div class="video"><div class="foto"><video src="assets/video/tgi-movimento.mp4" poster="assets/video/tgi-movimento.jpg" width="720" height="1280" controls muted playsinline preload="metadata" aria-label="Vídeo da coleção Da Ausência à Presença"></video></div><span>Da Ausência à Presença em movimento</span></div>
+<section id="colecoes" aria-labelledby="t-colecoes">
+  <div class="palco-varal">
+    <div class="cabeca">
+      <h2 id="t-colecoes">Coleções</h2>
+      <p>Projetos do curso de Estilismo e alguns extras, do primeiro croqui à foto final. Escolha uma foto para ver o projeto inteiro.</p>
+    </div>
+    <ul class="trilho">
+      <li class="peca" style="--h:58;--r:1080/988;--y:0;--inclina:-2deg;--tinta:#0F1E3A;--sombra:none">
+        <div class="foto"><img src="assets/img/tgi-da-ausencia-a-presenca.webp" alt="Croquis da coleção Da Ausência à Presença" width="1080" height="988" loading="lazy" decoding="async"><h3>Da Ausência à Presença</h3></div>
+        <p class="meta"><span>Projeto de graduação</span><span>2026</span></p>
+        <button type="button" class="abrir" data-projeto="da-ausencia-a-presenca" aria-haspopup="dialog" aria-label="Abrir o projeto Da Ausência à Presença"></button>
+      </li>
+      <li class="peca" style="--h:46;--r:1;--y:12;--inclina:3deg">
+        <div class="foto"><img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async"><h3>Rebel Noise</h3></div>
+        <p class="meta"><span>Coleção em jeans</span><span>2025</span></p>
+        <button type="button" class="abrir" data-projeto="rebel-noise" aria-haspopup="dialog" aria-label="Abrir o projeto Rebel Noise"></button>
+      </li>
+      <li class="peca" style="--h:40;--r:3/2;--y:4;--inclina:-1.5deg">
+        <div class="foto"><img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async"><h3>Conexões</h3></div>
+        <p class="meta"><span>Coleção do 4º semestre</span><span>2024</span></p>
+        <button type="button" class="abrir" data-projeto="conexoes" aria-haspopup="dialog" aria-label="Abrir o projeto Conexões"></button>
+      </li>
+      <li class="peca" style="--h:48;--r:1;--y:15;--inclina:2deg">
+        <div class="foto"><img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async"><h3>Projeto ICESP</h3></div>
+        <p class="meta"><span>Moda e cuidado</span><span>2024</span></p>
+        <button type="button" class="abrir" data-projeto="icesp" aria-haspopup="dialog" aria-label="Abrir o Projeto ICESP"></button>
+      </li>
+      <li class="peca" style="--h:56;--r:720/827;--y:3;--inclina:-3deg">
+        <div class="foto"><img src="assets/img/figurino-ele-me-bebeu.webp" alt="Figurino inspirado no conto Ele me bebeu" width="720" height="827" loading="lazy" decoding="async"><h3>Ele me bebeu</h3></div>
+        <p class="meta"><span>Projeto de figurino</span><span>2024</span></p>
+        <button type="button" class="abrir" data-projeto="ele-me-bebeu" aria-haspopup="dialog" aria-label="Abrir o projeto Ele me bebeu"></button>
+      </li>
+      <li class="peca" style="--h:60;--r:4/5;--y:9;--inclina:1.5deg">
+        <div class="foto"><img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async"><h3>Editorial</h3></div>
+        <p class="meta"><span>Fotografia de moda</span><span>2025</span></p>
+        <button type="button" class="abrir" data-projeto="editorial" aria-haspopup="dialog" aria-label="Abrir o Editorial"></button>
+      </li>
+      <li class="peca" style="--h:52;--r:720/893;--y:0;--inclina:-2deg">
+        <div class="foto"><img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async"><h3>RevelarSP</h3></div>
+        <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
+        <button type="button" class="abrir" data-projeto="revelarsp" aria-haspopup="dialog" aria-label="Abrir o projeto RevelarSP"></button>
+      </li>
+      <li class="peca" style="--h:36;--r:1;--y:20;--inclina:4deg">
+        <div class="foto"><img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async"><h3>Anel Paralelo</h3></div>
+        <p class="meta"><span>Joalheria</span><span>2024</span></p>
+        <button type="button" class="abrir" data-projeto="anel-paralelo" aria-haspopup="dialog" aria-label="Abrir o projeto Anel Paralelo"></button>
+      </li>
+    </ul>
   </div>
 </section>
 
 <section id="bastidores" style="background:var(--palco-fundo)">
   <div class="cabeca">
     <h2>Bastidores</h2>
-    <p>O caminho de uma peça, do mural de referências até a prova final. A parte que normalmente fica fora do desfile.</p>
+    <p>O caminho até a passarela: pesquisa, testes de material, ateliê e a apresentação à banca. A parte que normalmente fica fora do desfile.</p>
   </div>
   <ol class="processo">
-    <li><div class="foto f-papel" data-legenda="Mural"></div><h3>Pesquisa</h3><p>Referências de figurino, arte e rua reunidas num mural.</p></li>
-    <li><div class="foto f-linho" data-legenda="Croqui"></div><h3>Croqui</h3><p>A silhueta desenhada em movimento, nunca parada.</p></li>
-    <li><div class="foto f-renda" data-legenda="Modelagem"></div><h3>Modelagem</h3><p>Moldes no papel e simulação 3D para testar o volume.</p></li>
-    <li><div class="foto f-plisse" data-legenda="Costura"></div><h3>Costura</h3><p>Montagem da peça piloto no ateliê.</p></li>
-    <li><div class="foto f-cetim" data-legenda="Prova"></div><h3>Prova</h3><p>Ajustes com a peça no corpo, inclusive dançando.</p></li>
+    <li><div class="foto"><img src="assets/img/bastidores-pesquisa.webp" alt="Caixa com o mapa do Bom Retiro desenhado em linhas coloridas e um novelo de fios" width="720" height="900" loading="lazy" decoding="async"></div><h3>Pesquisa</h3><p>O mapa do Bom Retiro em linhas coloridas, ponto de partida do RevelarSP.</p></li>
+    <li><div class="foto"><img src="assets/img/bastidores-materiais.webp" alt="Placa perfurada com amarrações de cordões coloridos e palitos" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Materiais</h3><p>Testes de amarração numa placa perfurada, para a coleção Conexões.</p></li>
+    <li><div class="foto"><img src="assets/img/bastidores-atelie.webp" alt="Peças da coleção Conexões nos manequins do ateliê da faculdade" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Ateliê</h3><p>As peças de Conexões tomando forma nos manequins.</p></li>
+    <li><div class="foto"><video src="assets/video/tgi-movimento.mp4" poster="assets/video/tgi-movimento.jpg" width="720" height="1280" controls muted playsinline preload="metadata" aria-label="Vídeo da apresentação de Da Ausência à Presença à banca"></video></div><h3>Banca</h3><p>A apresentação de Da Ausência à Presença: croquis, cartela de cores e book.</p></li>
   </ol>
   <p style="margin-top:32px"><a href="https://youtu.be/TTBEE9axsPk" target="_blank" rel="noopener">Ver o processo da coleção Conexões no YouTube</a></p>
 </section>
@@ -328,6 +350,145 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
   </div>
 </section>
 
+<div class="projetos">
+<dialog id="projeto-da-ausencia-a-presenca" class="projeto" aria-labelledby="t-da-ausencia-a-presenca">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Da Ausência à Presença">
+      <img src="assets/img/tgi-da-ausencia-a-presenca.webp" alt="Croquis da coleção Da Ausência à Presença" width="1080" height="988" loading="lazy" decoding="async">
+      <img src="assets/img/tgi-da-ausencia-a-presenca-2.webp" alt="Segunda prancha de croquis da coleção, em tons de vinho" width="1080" height="922" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Projeto de graduação</span><span>2026</span></p>
+      <h2 id="t-da-ausencia-a-presenca">Da Ausência à Presença</h2>
+      <p>Moda como narrativa de reconexão humana: a falta de amor como ferida e o cuidado como a cicatriz que fica.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 2</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DZ6G2uDs5EC/" target="_blank" rel="noopener" aria-label="Da Ausência à Presença, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-rebel-noise" class="projeto" aria-labelledby="t-rebel-noise">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Rebel Noise">
+      <img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async">
+      <img src="assets/img/rebel-noise-2.webp" alt="Macacão em jeans com barra ampla" width="1080" height="1245" loading="lazy" decoding="async">
+      <img src="assets/img/rebel-noise-3.webp" alt="Modelo sentada num pedestal com look em jeans" width="1080" height="1080" loading="lazy" decoding="async">
+      <img src="assets/img/rebel-noise-4.webp" alt="Três looks em jeans da coleção" width="1080" height="1080" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Coleção em jeans</span><span>2025</span></p>
+      <h2 id="t-rebel-noise">Rebel Noise</h2>
+      <p>O rock dos anos 70 e 80 em jeans, entre o peso do hard rock e o brilho do glam.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 4</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DSTcjAMj4sw/" target="_blank" rel="noopener" aria-label="Rebel Noise, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-conexoes" class="projeto" aria-labelledby="t-conexoes">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Conexões">
+      <img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-2.webp" alt="Duas modelos com peças de retalhos em preto e branco" width="1440" height="1800" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-3.webp" alt="Modelos segurando argolas de metal diante do rosto" width="1390" height="960" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-4.webp" alt="Top de retalhos amarrado nas costas, visto de lado" width="1440" height="1800" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Coleção do 4º semestre</span><span>2024</span></p>
+      <h2 id="t-conexoes">Conexões</h2>
+      <p>Pequenos detalhes que se enlaçam e se unem para criar formas.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 4</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DCzD9RwuH1y/" target="_blank" rel="noopener" aria-label="Conexões, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-icesp" class="projeto" aria-labelledby="t-icesp">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Projeto ICESP">
+      <img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async">
+      <img src="assets/img/icesp-2.webp" alt="A roupa de papel apresentada no ICESP, ao lado do grupo" width="720" height="720" loading="lazy" decoding="async">
+      <img src="assets/img/icesp-3.webp" alt="Pessoa vestindo a roupa de papel, abraçada pelo grupo" width="720" height="720" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Moda e cuidado</span><span>2024</span></p>
+      <h2 id="t-icesp">Projeto ICESP</h2>
+      <p>Roupas de papel com guizos que lembram o sino tocado no fim da radioterapia.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/C-S3kVzu9cL/" target="_blank" rel="noopener" aria-label="Projeto ICESP, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-ele-me-bebeu" class="projeto" aria-labelledby="t-ele-me-bebeu">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Ele me bebeu">
+      <img src="assets/img/figurino-ele-me-bebeu.webp" alt="Figurino inspirado no conto Ele me bebeu" width="720" height="827" loading="lazy" decoding="async">
+      <img src="assets/img/figurino-ele-me-bebeu-2.webp" alt="Vestido lilás e azul do figurino, visto de lado" width="719" height="833" loading="lazy" decoding="async">
+      <img src="assets/img/figurino-ele-me-bebeu-3.webp" alt="Rosto com maquiagem prateada sob um véu de tule" width="720" height="825" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Projeto de figurino</span><span>2024</span></p>
+      <h2 id="t-ele-me-bebeu">Ele me bebeu</h2>
+      <p>Figurino baseado no conto de Clarice Lispector.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/C-S3_S5usYF/" target="_blank" rel="noopener" aria-label="Ele me bebeu, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-editorial" class="projeto" aria-labelledby="t-editorial">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Editorial">
+      <img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async">
+      <img src="assets/img/editorial-2.webp" alt="Modelo sentada no chão com saia preta e tecido vermelho" width="1080" height="1080" loading="lazy" decoding="async">
+      <img src="assets/img/editorial-3.webp" alt="Modelo de perfil com corpete bordado e saia em camadas" width="1080" height="1350" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Fotografia de moda</span><span>2025</span></p>
+      <h2 id="t-editorial">Editorial</h2>
+      <p>Fotografia, edição e styling feitos em grupo na disciplina de Fotografia de Moda.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DHVnm1KRWLC/" target="_blank" rel="noopener" aria-label="Editorial, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-revelarsp" class="projeto" aria-labelledby="t-revelarsp">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de RevelarSP">
+      <img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async">
+      <img src="assets/img/revelarsp-2.webp" alt="Outra modelo com a roupa de papel do RevelarSP, em estúdio" width="719" height="805" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
+      <h2 id="t-revelarsp">RevelarSP</h2>
+      <p>As culturas do Bom Retiro em linhas e cores; entre os 12 melhores projetos do semestre.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 2</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/C-S0mEWOPK_/" target="_blank" rel="noopener" aria-label="RevelarSP, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-anel-paralelo" class="projeto" aria-labelledby="t-anel-paralelo">
+  <div class="interno">
+    <div class="galeria" tabindex="0" aria-label="Fotos de Anel Paralelo">
+      <img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async">
+      <img src="assets/img/anel-paralelo-2.webp" alt="Anel Paralelo visto de frente" width="1439" height="1440" loading="lazy" decoding="async">
+      <img src="assets/img/anel-paralelo-3.webp" alt="Anel Paralelo visto de cima, com as duas faixas paralelas" width="1440" height="1440" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Joalheria</span><span>2024</span></p>
+      <h2 id="t-anel-paralelo">Anel Paralelo</h2>
+      <p>Anel em prata feito como extra, fora do currículo.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DDM352pu8ma/" target="_blank" rel="noopener" aria-label="Anel Paralelo, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+</div>
+
 <footer>
   <span>© 2026 Michelle Fracaro · Design de moda</span>
   <span>Prévia: alguns textos ainda provisórios · site por Lucas Leria</span>
@@ -347,13 +508,142 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;paddin
     form.reset();
   });
 
+  var calmo=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Mostrador: a agulha aponta a seção que está no meio da tela; no topo ela fica deitada */
+  var mostrador=document.querySelector('.mostrador'), agulha=mostrador.querySelector('.agulha');
+  var linksM=[].slice.call(mostrador.querySelectorAll('a')), secaoAtual='inicio';
+  function aponta(id){
+    secaoAtual=id;
+    mostrador.setAttribute('data-secao',id);
+    var ativo=null;
+    linksM.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id){a.setAttribute('aria-current','true');ativo=a;}
+      else a.removeAttribute('aria-current');
+    });
+    var ang=-90;
+    if(ativo){
+      var t=parseFloat(ativo.parentNode.style.getPropertyValue('--a'))*Math.PI/180, cs=getComputedStyle(mostrador);
+      ang=Math.atan2(Math.sin(t)*parseFloat(cs.getPropertyValue('--rx')),Math.cos(t)*parseFloat(cs.getPropertyValue('--ry')))*180/Math.PI;
+    }
+    agulha.style.setProperty('--agulha',ang.toFixed(1)+'deg');
+  }
+  var ids=['inicio','sobre','colecoes','bastidores','conquistas','contato'], noMeio={};
+  if('IntersectionObserver' in window){
+    var olho=new IntersectionObserver(function(es){
+      es.forEach(function(e){noMeio[e.target.id]=e.isIntersecting;});
+      var atual='inicio'; ids.forEach(function(id){if(noMeio[id])atual=id;});
+      aponta(atual);
+    },{rootMargin:'-50% 0px -50% 0px'});
+    ids.forEach(function(id){olho.observe(document.getElementById(id));});
+  }
+  window.addEventListener('resize',function(){aponta(secaoAtual);});
+  /* o fundo do mostrador acompanha a seção que está atrás dele, no pé da tela */
+  var claras=[].slice.call(document.querySelectorAll('.clara')), pedindo=false;
+  function tema(){
+    pedindo=false;
+    var y=window.innerHeight-60;
+    mostrador.classList.toggle('claro',claras.some(function(c){var r=c.getBoundingClientRect();return r.top<y&&r.bottom>y;}));
+  }
+  window.addEventListener('scroll',function(){if(!pedindo){pedindo=true;requestAnimationFrame(tema);}},{passive:true});
+  tema();
+
+  /* Varal de Coleções: no desktop a rolagem vertical leva o trilho para o lado;
+     a fileira se curva em direção às bordas e as fotos balançam com a velocidade, como tecido pendurado */
+  var sec=document.getElementById('colecoes'), trilho=sec.querySelector('.trilho'), pecas=[].slice.call(trilho.children);
+  var largo=window.matchMedia('(min-width: 821px) and (min-height: 560px)');
+  var preso=false, xAntes=0, balanco=pecas.map(function(){return 0;}), perto=false;
+  /* quanto o trilho anda: até a última foto parar a uma margem da borda direita */
+  function curso(){var u=pecas[pecas.length-1];return Math.max(0,u.offsetLeft+u.offsetWidth+parseFloat(getComputedStyle(trilho).paddingLeft)-window.innerWidth);}
+  function montaVaral(){
+    preso=largo.matches;
+    sec.classList.toggle('varal-ativo',preso);
+    if(preso) sec.style.setProperty('--altura-varal',(curso()+window.innerHeight)+'px');
+    else{sec.style.removeProperty('--altura-varal');trilho.style.removeProperty('--x');}
+  }
+  montaVaral();
+  window.addEventListener('resize',montaVaral);
+  window.addEventListener('load',montaVaral);
+  if('IntersectionObserver' in window) new IntersectionObserver(function(e){perto=e[0].isIntersecting;},{rootMargin:'200px 0px'}).observe(sec);
+  else perto=true;
+  function quadroVaral(){
+    requestAnimationFrame(quadroVaral);
+    if(!perto)return;
+    var vw=window.innerWidth, x;
+    if(preso){
+      var trecho=sec.offsetHeight-window.innerHeight, p=Math.min(1,Math.max(0,-sec.getBoundingClientRect().top/trecho));
+      x=-p*curso();
+      trilho.style.setProperty('--x',x.toFixed(1)+'px');
+    } else x=-trilho.scrollLeft;
+    var v=x-xAntes; xAntes=x;
+    if(calmo)return;
+    var esquerda=trilho.getBoundingClientRect().left-trilho.scrollLeft;
+    pecas.forEach(function(el,i){
+      var d=(esquerda+el.offsetLeft+el.offsetWidth/2-vw/2)/(vw/2);
+      d=Math.max(-1.6,Math.min(1.6,d));
+      balanco[i]+=(Math.max(-6,Math.min(6,-v*.12))-balanco[i])*(.05+.025*(i%3));
+      el.style.setProperty('--curva',(-d*24).toFixed(2)+'deg');
+      el.style.setProperty('--longe',(1-.07*Math.abs(d)).toFixed(3));
+      el.style.setProperty('--balanco',balanco[i].toFixed(2)+'deg');
+    });
+  }
+  requestAnimationFrame(quadroVaral);
+  /* o navegador rola o palco escondido para mostrar o foco; no desktop quem anda é o trilho */
+  var palco=sec.querySelector('.palco-varal');
+  palco.addEventListener('scroll',function(){if(preso)palco.scrollTop=palco.scrollLeft=0;});
+  /* com o teclado, levar a foto focada para o meio da tela */
+  trilho.addEventListener('focusin',function(e){
+    var li=e.target.closest('.peca'); if(!li||!preso)return;
+    var p=Math.max(0,Math.min(1,(li.offsetLeft+li.offsetWidth/2-window.innerWidth/2)/curso()));
+    /* depois da rolagem que o próprio navegador faz para o foco */
+    setTimeout(function(){window.scrollTo({top:sec.offsetTop+p*(sec.offsetHeight-window.innerHeight),behavior:calmo?'instant':'smooth'});},80);
+  });
+
+  /* Projeto aberto: a foto sai do varal e vira a primeira da galeria */
+  var ultimoBotao=null;
+  function comTransicao(mudar,origem,destino){
+    if(calmo||!document.startViewTransition||!origem||!destino){mudar();return;}
+    origem.style.viewTransitionName='foto-aberta';
+    var t=document.startViewTransition(function(){origem.style.viewTransitionName='';destino.style.viewTransitionName='foto-aberta';mudar();});
+    t.finished.finally(function(){destino.style.viewTransitionName='';});
+  }
+  function indice(d){var g=d.querySelector('.galeria');return Math.round(g.scrollLeft/Math.max(1,g.clientWidth));}
+  function contador(d){
+    var n=d.querySelectorAll('.galeria img').length, i=indice(d), bs=d.querySelectorAll('[data-passa]');
+    d.querySelector('.contador').textContent=(i+1)+' de '+n;
+    bs[0].disabled=i<=0; bs[1].disabled=i>=n-1;
+  }
+  function fecha(d){
+    var origem=indice(d)===0?d.querySelector('.galeria img'):null;
+    comTransicao(function(){d.close();},origem,ultimoBotao&&ultimoBotao.parentNode.querySelector('img'));
+  }
+  [].forEach.call(document.querySelectorAll('.abrir'),function(b){
+    var d=document.getElementById('projeto-'+b.getAttribute('data-projeto'));
+    function carrega(){[].forEach.call(d.querySelectorAll('img'),function(i){i.loading='eager';});}
+    b.addEventListener('pointerenter',carrega);
+    b.addEventListener('focus',carrega);
+    b.addEventListener('click',function(){
+      ultimoBotao=b; carrega();
+      var g=d.querySelector('.galeria'); g.scrollLeft=0; contador(d);
+      comTransicao(function(){d.showModal();},b.parentNode.querySelector('img'),g.querySelector('img'));
+    });
+  });
+  [].forEach.call(document.querySelectorAll('.projeto'),function(d){
+    var g=d.querySelector('.galeria');
+    d.querySelector('[data-fecha]').addEventListener('click',function(){fecha(d);});
+    d.addEventListener('cancel',function(e){e.preventDefault();fecha(d);});
+    [].forEach.call(d.querySelectorAll('[data-passa]'),function(btn){
+      btn.addEventListener('click',function(){g.scrollBy({left:+btn.getAttribute('data-passa')*g.clientWidth,behavior:calmo?'auto':'smooth'});});
+    });
+    g.addEventListener('scroll',function(){contador(d);},{passive:true});
+  });
+
   /* Manequim de moulage com saia de tule */
   var canvas=document.getElementById('manequim');
   if(!window.THREE){document.getElementById('sem3d').style.display='grid';return;}
   var renderer;
   try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}
   catch(err){document.getElementById('sem3d').style.display='grid';return;}
-  var calmo=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   var cena=new THREE.Scene();
   var camera=new THREE.PerspectiveCamera(32,1,0.1,50);

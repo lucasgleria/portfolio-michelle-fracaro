@@ -42,3 +42,9 @@ export function dimensoesMp4(caminho) {
   const fim = inicio + b.readUInt32BE(inicio);
   return { w: b.readUInt32BE(fim - 8) >>> 16, h: b.readUInt32BE(fim - 4) >>> 16 };
 }
+
+export function dialogo(id) {
+  const inicio = html.indexOf(`<dialog id="${id}"`);
+  if (inicio < 0) throw new Error(`Diálogo não encontrado: ${id}`);
+  return html.slice(inicio, html.indexOf('</dialog>', inicio));
+}
