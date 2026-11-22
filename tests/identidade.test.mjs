@@ -19,6 +19,13 @@ test('Contato aponta para o Instagram real', () => {
   assert.match(s, /href="https:\/\/www\.instagram\.com\/michelle_fracaro\/"/);
   assert.match(s, />@michelle_fracaro</);
   assert.match(s, />São Paulo</);
+  assert.match(s, /href="mailto:moraisfracaro@gmail\.com"/);
+});
+
+test('sem balé: ela é apresentada como designer de moda', () => {
+  assert.doesNotMatch(html, /bailarin|balé|dança/i);
+  assert.doesNotMatch(html, /Estilismo,|curso de Estilismo/);
+  assert.match(secao('sobre'), /<p>Sou designer de moda,/);
 });
 
 test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {

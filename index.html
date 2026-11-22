@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="Portfólio de moda de Michelle Fracaro, estilista formada pela Faculdade Santa Marcelina.">
+<meta name="description" content="Portfólio de moda de Michelle Fracaro, designer de moda formada pela Faculdade Santa Marcelina.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://portfolio-michelle-fracaro-demo.vercel.app/">
 <meta property="og:title" content="Michelle Fracaro — Portfólio de moda">
-<meta property="og:description" content="Portfólio de moda de Michelle Fracaro, estilista formada pela Faculdade Santa Marcelina.">
+<meta property="og:description" content="Portfólio de moda de Michelle Fracaro, designer de moda formada pela Faculdade Santa Marcelina.">
 <meta property="og:image" content="https://portfolio-michelle-fracaro-demo.vercel.app/assets/img/og-michelle-fracaro.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -117,11 +117,13 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
   transform:perspective(1300px) rotateY(var(--curva,0deg)) scale(var(--longe,1)) rotate(var(--inclina)) skewX(var(--balanco,0deg))}
 .peca .foto{height:clamp(220px,calc(var(--h) * 1svh),720px);aspect-ratio:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .peca h3{position:absolute;left:7%;bottom:9%;max-width:86%;font-size:clamp(30px,3.3vw,54px);font-style:italic;line-height:.95;color:var(--tinta,var(--branco));transform:rotate(-6deg);transform-origin:0 100%;text-shadow:var(--sombra,0 2px 20px rgba(0,0,0,.5));pointer-events:none}
+/* título longo acompanha o tamanho da foto (mesma conta da largura) para não ser cortado */
+.peca h3.longo{font-size:clamp(20px,calc(var(--h) * .062svh),40px)}
 .peca .meta{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-size:14px;color:var(--tule)}
 .abrir{position:absolute;inset:0;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:2px}
 .peca:hover .foto img{transform:scale(1.03)}
 .peca .foto img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-@media (max-width:820px){.peca .foto{height:auto;width:calc(var(--h) * 1.3vw)}}
+@media (max-width:820px){.peca .foto{height:auto;width:calc(var(--h) * 1.3vw)}.peca h3.longo{font-size:calc(var(--h) * .11vw)}}
 /* No desktop o varal fica preso na tela e a rolagem vertical o leva para o lado */
 .varal-ativo{height:var(--altura-varal,auto);padding-top:0;padding-bottom:0}
 .varal-ativo .palco-varal{position:sticky;top:0;height:100svh;overflow:hidden;padding-top:clamp(32px,8vh,96px)}
@@ -140,6 +142,7 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .ficha .meta{display:flex;gap:24px;font-size:14px;color:var(--tule)}
 .ficha h2{font-size:clamp(44px,4.8vw,80px);font-style:italic}
 .ficha p:not(.meta){max-width:44ch}
+.ficha .creditos{font-size:14px;color:var(--tule)}
 .passar{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--tule);font-variant-numeric:tabular-nums}
 .passar button,.fechar{font:inherit;font-size:14px;color:var(--luz);background:none;border:1px solid var(--linha);border-radius:99px;padding:8px 16px;cursor:pointer}
 .passar button:hover,.fechar:hover{border-color:var(--tule)}
@@ -148,6 +151,7 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 @media (max-width:820px){
   .interno{grid-template-columns:1fr;grid-template-rows:62svh auto;height:auto;min-height:100%}
   .ficha{border-left:0;justify-content:flex-start;padding-bottom:48px}
+  .ficha h2.longo{font-size:clamp(32px,9vw,44px)}
 }
 ::view-transition-group(foto-aberta){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
 
@@ -239,7 +243,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 <header class="abertura" id="inicio">
   <div>
     <h1 aria-label="Michelle"><span>Michelle</span></h1>
-    <p class="subtitulo">Designer de moda e bailarina. Desenho roupas para um corpo que se move.</p>
+    <p class="subtitulo">Designer de moda. Do primeiro croqui à peça pronta.</p>
     <div class="acoes">
       <a class="botao cheio" href="#colecoes">Ver coleções</a>
       <a class="botao" href="#contato">Entrar em contato</a>
@@ -263,12 +267,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <div>
       <h2>Sobre mim</h2>
       <div class="texto">
-        <p>Sou estilista, formada em 2026 pela Faculdade Santa Marcelina, e bailarina. No palco aprendi como o tecido acompanha o corpo; no ateliê, transformo isso em roupa.</p>
-        <p class="suave">Trabalho do croqui à peça pronta, muitas vezes também na fotografia e no styling. Já criei roupas de papel, peças em jeans, joias em prata e uma coleção de graduação sobre o amor como cuidado.</p>
+        <p>Sou designer de moda, formada em 2026 pela Faculdade Santa Marcelina. Trabalho do croqui à peça pronta, muitas vezes também na fotografia e no styling.</p>
+        <p class="suave">Já criei roupas de papel, peças em jeans, joias em prata e uma coleção de graduação sobre o amor como cuidado.</p>
       </div>
       <dl class="fatos">
-        <div><dt>Formação</dt><dd>Estilismo, Santa Marcelina, 2026</dd></div>
-        <div><dt>Dança</dt><dd>Balé</dd></div>
+        <div><dt>Formação</dt><dd>Design de Moda, Santa Marcelina, 2026</dd></div>
         <div><dt>Também faço</dt><dd>Fotografia, styling e joalheria</dd></div>
       </dl>
     </div>
@@ -279,7 +282,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   <div class="palco-varal">
     <div class="cabeca">
       <h2 id="t-colecoes">Coleções</h2>
-      <p>Projetos do curso de Estilismo e alguns extras, do primeiro croqui à foto final. Escolha uma foto para ver o projeto inteiro.</p>
+      <p>Projetos do curso de Design de Moda e alguns extras, do primeiro croqui à foto final. Escolha uma foto para ver o projeto inteiro.</p>
     </div>
     <ul class="trilho">
       <li class="peca" style="--h:58;--r:1080/988;--y:0;--inclina:-2deg;--tinta:#0F1E3A;--sombra:none">
@@ -288,34 +291,44 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
         <button type="button" class="abrir" data-projeto="da-ausencia-a-presenca" aria-haspopup="dialog" aria-label="Abrir o projeto Da Ausência à Presença"></button>
       </li>
       <li class="peca" style="--h:46;--r:1;--y:12;--inclina:3deg">
-        <div class="foto"><img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async"><h3>Rebel Noise</h3></div>
+        <div class="foto"><img src="assets/img/rebel-noise-4.webp" alt="Três looks em jeans da coleção" width="1080" height="1080" loading="lazy" decoding="async"><h3>Rebel Noise</h3></div>
         <p class="meta"><span>Coleção em jeans</span><span>2025</span></p>
         <button type="button" class="abrir" data-projeto="rebel-noise" aria-haspopup="dialog" aria-label="Abrir o projeto Rebel Noise"></button>
+      </li>
+      <li class="peca" style="--h:54;--r:719/887;--y:6;--inclina:-2.5deg">
+        <div class="foto"><img src="assets/img/conexoes-3-semestre.webp" alt="Modelo com peça de retalhos em preto e branco sobre fundo azul" width="719" height="887" loading="lazy" decoding="async"><h3>Conexões</h3></div>
+        <p class="meta"><span>Editorial do 3º semestre</span><span>2024</span></p>
+        <button type="button" class="abrir" data-projeto="conexoes-3-semestre" aria-haspopup="dialog" aria-label="Abrir o projeto Conexões, 3º semestre"></button>
       </li>
       <li class="peca" style="--h:40;--r:3/2;--y:4;--inclina:-1.5deg">
         <div class="foto"><img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async"><h3>Conexões</h3></div>
         <p class="meta"><span>Coleção do 4º semestre</span><span>2024</span></p>
-        <button type="button" class="abrir" data-projeto="conexoes" aria-haspopup="dialog" aria-label="Abrir o projeto Conexões"></button>
+        <button type="button" class="abrir" data-projeto="conexoes-4-semestre" aria-haspopup="dialog" aria-label="Abrir o projeto Conexões, 4º semestre"></button>
+      </li>
+      <li class="peca" style="--h:50;--r:4/5;--y:14;--inclina:2.5deg">
+        <div class="foto"><img src="assets/img/conexoes-5-semestre.webp" alt="Modelo agachada com vestido estampado em lilás" width="1080" height="1350" loading="lazy" decoding="async"><h3>Conexões</h3></div>
+        <p class="meta"><span>Coleção do 5º semestre</span><span>2025</span></p>
+        <button type="button" class="abrir" data-projeto="conexoes-5-semestre" aria-haspopup="dialog" aria-label="Abrir o projeto Conexões, 5º semestre"></button>
       </li>
       <li class="peca" style="--h:48;--r:1;--y:15;--inclina:2deg">
         <div class="foto"><img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async"><h3>Projeto ICESP</h3></div>
-        <p class="meta"><span>Moda e cuidado</span><span>2024</span></p>
+        <p class="meta"><span>Moda e cuidado</span><span>2023</span></p>
         <button type="button" class="abrir" data-projeto="icesp" aria-haspopup="dialog" aria-label="Abrir o Projeto ICESP"></button>
       </li>
       <li class="peca" style="--h:56;--r:720/827;--y:3;--inclina:-3deg">
         <div class="foto"><img src="assets/img/figurino-ele-me-bebeu.webp" alt="Figurino inspirado no conto Ele me bebeu" width="720" height="827" loading="lazy" decoding="async"><h3>Ele me bebeu</h3></div>
-        <p class="meta"><span>Projeto de figurino</span><span>2024</span></p>
+        <p class="meta"><span>Projeto de figurino</span><span>2023</span></p>
         <button type="button" class="abrir" data-projeto="ele-me-bebeu" aria-haspopup="dialog" aria-label="Abrir o projeto Ele me bebeu"></button>
       </li>
       <li class="peca" style="--h:60;--r:4/5;--y:9;--inclina:1.5deg">
-        <div class="foto"><img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async"><h3>Editorial</h3></div>
+        <div class="foto"><img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async"><h3>Editorial Códigos</h3></div>
         <p class="meta"><span>Fotografia de moda</span><span>2025</span></p>
-        <button type="button" class="abrir" data-projeto="editorial" aria-haspopup="dialog" aria-label="Abrir o Editorial"></button>
+        <button type="button" class="abrir" data-projeto="editorial" aria-haspopup="dialog" aria-label="Abrir o Editorial Códigos"></button>
       </li>
       <li class="peca" style="--h:52;--r:720/893;--y:0;--inclina:-2deg">
-        <div class="foto"><img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async"><h3>RevelarSP</h3></div>
+        <div class="foto"><img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async"><h3 class="longo">RevelarSP: Multiculturalidade</h3></div>
         <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
-        <button type="button" class="abrir" data-projeto="revelarsp" aria-haspopup="dialog" aria-label="Abrir o projeto RevelarSP"></button>
+        <button type="button" class="abrir" data-projeto="revelarsp" aria-haspopup="dialog" aria-label="Abrir o projeto RevelarSP: Multiculturalidade"></button>
       </li>
       <li class="peca" style="--h:36;--r:1;--y:20;--inclina:4deg">
         <div class="foto"><img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async"><h3>Anel Paralelo</h3></div>
@@ -333,11 +346,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   </div>
   <ol class="processo">
     <li><div class="foto"><img src="assets/img/bastidores-pesquisa.webp" alt="Caixa com o mapa do Bom Retiro desenhado em linhas coloridas e um novelo de fios" width="720" height="900" loading="lazy" decoding="async"></div><h3>Pesquisa</h3><p>O mapa do Bom Retiro em linhas coloridas, ponto de partida do RevelarSP.</p></li>
-    <li><div class="foto"><img src="assets/img/bastidores-materiais.webp" alt="Placa perfurada com amarrações de cordões coloridos e palitos" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Materiais</h3><p>Testes de amarração numa placa perfurada, para a coleção Conexões.</p></li>
-    <li><div class="foto"><img src="assets/img/bastidores-atelie.webp" alt="Peças da coleção Conexões nos manequins do ateliê da faculdade" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Ateliê</h3><p>As peças de Conexões tomando forma nos manequins.</p></li>
+    <li><div class="foto"><img src="assets/img/bastidores-materiais.webp" alt="Placa perfurada com amarrações de cordões coloridos e palitos" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Materiais</h3><p>Testes de amarração numa placa perfurada, para Conexões do 4º semestre.</p></li>
+    <li><div class="foto"><img src="assets/img/bastidores-atelie.webp" alt="Peças da coleção Conexões nos manequins do ateliê da faculdade" width="1440" height="1440" loading="lazy" decoding="async"></div><h3>Ateliê</h3><p>As peças de Conexões do 4º semestre tomando forma nos manequins.</p></li>
     <li><div class="foto"><video src="assets/video/tgi-movimento.mp4" poster="assets/video/tgi-movimento.jpg" width="720" height="1280" controls muted playsinline preload="metadata" aria-label="Vídeo da apresentação de Da Ausência à Presença à banca"></video></div><h3>Banca</h3><p>A apresentação de Da Ausência à Presença: croquis, cartela de cores e book.</p></li>
   </ol>
-  <p style="margin-top:32px"><a href="https://youtu.be/TTBEE9axsPk" target="_blank" rel="noopener">Ver o processo da coleção Conexões no YouTube</a></p>
+  <p style="margin-top:32px"><a href="https://youtu.be/TTBEE9axsPk" target="_blank" rel="noopener">Ver o processo de Conexões (4º semestre) no YouTube</a></p>
 </section>
 
 <section class="clara" id="conquistas">
@@ -346,8 +359,8 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <p class="suave">Marcos da minha trajetória na moda.</p>
   </div>
   <ol class="linha-tempo">
-    <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de conclusão do curso de Estilismo na Santa Marcelina.</p></li>
-    <li><time datetime="2024">2024</time><h3>Projeto ICESP</h3><p>Roupas de papel criadas para celebrar o fim do tratamento de pacientes com câncer.</p></li>
+    <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de conclusão do curso de Design de Moda na Santa Marcelina.</p></li>
+    <li><time datetime="2023">2023</time><h3>Projeto ICESP</h3><p>Roupas de papel criadas para celebrar o fim do tratamento de pacientes com câncer.</p></li>
     <li><time datetime="2023">2023</time><h3>RevelarSP entre os destaques</h3><p>Selecionado entre os 12 melhores projetos do 1º semestre de 2023 da Santa Marcelina.</p></li>
   </ol>
 </section>
@@ -356,10 +369,10 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   <div class="contato">
     <div>
       <h2>Contato</h2>
-      <p class="texto" style="color:var(--tule)">Para trabalhos, parcerias, figurinos ou só para conversar sobre moda.</p>
+      <p class="texto" style="color:var(--tule)">Para trabalhos, parcerias ou só para conversar sobre moda.</p>
       <ul class="canais">
         <li><small>Instagram</small><span><a href="https://www.instagram.com/michelle_fracaro/" target="_blank" rel="noopener">@michelle_fracaro</a></span></li>
-        <li><small>E-mail</small><span>contato@michelle.com</span></li>
+        <li><small>E-mail</small><span><a href="mailto:moraisfracaro@gmail.com">moraisfracaro@gmail.com</a></span></li>
         <li><small>Cidade</small><span>São Paulo</span></li>
       </ul>
     </div>
@@ -369,7 +382,6 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       <label for="assunto">Assunto
         <select id="assunto" name="assunto">
           <option>Trabalho ou vaga</option>
-          <option>Figurino de dança</option>
           <option>Parceria</option>
           <option>Outro</option>
         </select>
@@ -401,10 +413,10 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 <dialog id="projeto-rebel-noise" class="projeto" aria-labelledby="t-rebel-noise">
   <div class="interno">
     <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Rebel Noise">
+      <img src="assets/img/rebel-noise-4.webp" alt="Três looks em jeans da coleção" width="1080" height="1080" loading="lazy" decoding="async">
       <img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async">
       <img src="assets/img/rebel-noise-2.webp" alt="Macacão em jeans com barra ampla" width="1080" height="1245" loading="lazy" decoding="async">
       <img src="assets/img/rebel-noise-3.webp" alt="Modelo sentada num pedestal com look em jeans" width="1080" height="1080" loading="lazy" decoding="async">
-      <img src="assets/img/rebel-noise-4.webp" alt="Três looks em jeans da coleção" width="1080" height="1080" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
       <p class="meta"><span>Coleção em jeans</span><span>2025</span></p>
@@ -416,9 +428,27 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>
 </dialog>
-<dialog id="projeto-conexoes" class="projeto" aria-labelledby="t-conexoes">
+<dialog id="projeto-conexoes-3-semestre" class="projeto" aria-labelledby="t-conexoes-3-semestre">
   <div class="interno">
-    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Conexões">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Conexões, 3º semestre">
+      <img src="assets/img/conexoes-3-semestre.webp" alt="Modelo com peça de retalhos em preto e branco sobre fundo azul" width="719" height="887" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-3-semestre-2.webp" alt="Vestido branco recortado, de perfil, sobre fundo azul" width="720" height="900" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-3-semestre-3.webp" alt="Modelo em movimento com a peça de retalhos, sobre fundo azul" width="720" height="900" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Editorial do 3º semestre</span><span>2024</span></p>
+      <h2 id="t-conexoes-3-semestre">Conexões</h2>
+      <p>O começo da pesquisa de Conexões, em editorial para a disciplina de Estilismo I. A coleção ganhou mais duas continuações, no 4º e no 5º semestre.</p>
+      <p class="creditos">Fotografia: Rogério Affonso</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/C-TDYQsPifA/" target="_blank" rel="noopener" aria-label="Conexões, 3º semestre, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-conexoes-4-semestre" class="projeto" aria-labelledby="t-conexoes-4-semestre">
+  <div class="interno">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Conexões, 4º semestre">
       <img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async">
       <img src="assets/img/conexoes-2.webp" alt="Duas modelos com peças de retalhos em preto e branco" width="1440" height="1800" loading="lazy" decoding="async">
       <img src="assets/img/conexoes-3.webp" alt="Modelos segurando argolas de metal diante do rosto" width="1390" height="960" loading="lazy" decoding="async">
@@ -426,10 +456,27 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     </div>
     <div class="ficha">
       <p class="meta"><span>Coleção do 4º semestre</span><span>2024</span></p>
-      <h2 id="t-conexoes">Conexões</h2>
-      <p>Pequenos detalhes que se enlaçam e se unem para criar formas.</p>
+      <h2 id="t-conexoes-4-semestre">Conexões</h2>
+      <p>Pequenos detalhes que se enlaçam e se unem para criar formas. A segunda parte de Conexões.</p>
       <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 4</span><button type="button" data-passa="1">Próxima</button></div>
-      <a href="https://www.instagram.com/p/DCzD9RwuH1y/" target="_blank" rel="noopener" aria-label="Conexões, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+      <a href="https://www.instagram.com/p/DCzD9RwuH1y/" target="_blank" rel="noopener" aria-label="Conexões, 4º semestre, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-conexoes-5-semestre" class="projeto" aria-labelledby="t-conexoes-5-semestre">
+  <div class="interno">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Conexões, 5º semestre">
+      <img src="assets/img/conexoes-5-semestre.webp" alt="Modelo agachada com vestido estampado em lilás" width="1080" height="1350" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-5-semestre-2.webp" alt="Top preto com manga longa estampada, em pose agachada" width="1080" height="1217" loading="lazy" decoding="async">
+      <img src="assets/img/conexoes-5-semestre-3.webp" alt="Saia rodada estampada com faixas pretas, em movimento" width="1080" height="1317" loading="lazy" decoding="async">
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Coleção do 5º semestre</span><span>2025</span></p>
+      <h2 id="t-conexoes-5-semestre">Conexões</h2>
+      <p>A terceira parte de Conexões, numa vertente mais comercial, feita na disciplina de Superfícies. Produção, fotografia e styling meus.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <a href="https://www.instagram.com/p/DLRDi6Guk3h/" target="_blank" rel="noopener" aria-label="Conexões, 5º semestre, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>
@@ -439,13 +486,13 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Projeto ICESP">
       <img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async">
       <img src="assets/img/icesp-2.webp" alt="A roupa de papel apresentada no ICESP, ao lado do grupo" width="720" height="720" loading="lazy" decoding="async">
-      <img src="assets/img/icesp-3.webp" alt="Pessoa vestindo a roupa de papel, abraçada pelo grupo" width="720" height="720" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
-      <p class="meta"><span>Moda e cuidado</span><span>2024</span></p>
+      <p class="meta"><span>Moda e cuidado</span><span>2023</span></p>
       <h2 id="t-icesp">Projeto ICESP</h2>
       <p>Roupas de papel com guizos que lembram o sino tocado no fim da radioterapia.</p>
-      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
+      <p class="creditos">Em grupo com Amanda Ramalho e Luie Grotkowsky</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 2</span><button type="button" data-passa="1">Próxima</button></div>
       <a href="https://www.instagram.com/p/C-S3kVzu9cL/" target="_blank" rel="noopener" aria-label="Projeto ICESP, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>
@@ -459,9 +506,10 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       <img src="assets/img/figurino-ele-me-bebeu-3.webp" alt="Rosto com maquiagem prateada sob um véu de tule" width="720" height="825" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
-      <p class="meta"><span>Projeto de figurino</span><span>2024</span></p>
+      <p class="meta"><span>Projeto de figurino</span><span>2023</span></p>
       <h2 id="t-ele-me-bebeu">Ele me bebeu</h2>
       <p>Figurino baseado no conto de Clarice Lispector.</p>
+      <p class="creditos">Fotografia: Rogério Affonso</p>
       <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
       <a href="https://www.instagram.com/p/C-S3_S5usYF/" target="_blank" rel="noopener" aria-label="Ele me bebeu, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
@@ -470,33 +518,35 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-editorial" class="projeto" aria-labelledby="t-editorial">
   <div class="interno">
-    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Editorial">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Editorial Códigos">
       <img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async">
       <img src="assets/img/editorial-2.webp" alt="Modelo sentada no chão com saia preta e tecido vermelho" width="1080" height="1080" loading="lazy" decoding="async">
       <img src="assets/img/editorial-3.webp" alt="Modelo de perfil com corpete bordado e saia em camadas" width="1080" height="1350" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
       <p class="meta"><span>Fotografia de moda</span><span>2025</span></p>
-      <h2 id="t-editorial">Editorial</h2>
+      <h2 id="t-editorial">Editorial Códigos</h2>
       <p>Fotografia, edição e styling feitos em grupo na disciplina de Fotografia de Moda.</p>
+      <p class="creditos">Em grupo com @amnddh e @_rafamartelli</p>
       <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
-      <a href="https://www.instagram.com/p/DHVnm1KRWLC/" target="_blank" rel="noopener" aria-label="Editorial, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+      <a href="https://www.instagram.com/p/DHVnm1KRWLC/" target="_blank" rel="noopener" aria-label="Editorial Códigos, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>
 </dialog>
 <dialog id="projeto-revelarsp" class="projeto" aria-labelledby="t-revelarsp">
   <div class="interno">
-    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de RevelarSP">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de RevelarSP: Multiculturalidade">
       <img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async">
       <img src="assets/img/revelarsp-2.webp" alt="Outra modelo com a roupa de papel do RevelarSP, em estúdio" width="719" height="805" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
       <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
-      <h2 id="t-revelarsp">RevelarSP</h2>
+      <h2 id="t-revelarsp" class="longo">RevelarSP: Multiculturalidade</h2>
       <p>As culturas do Bom Retiro em linhas e cores; entre os 12 melhores projetos do semestre.</p>
+      <p class="creditos">Fotos: Debby Gram</p>
       <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 2</span><button type="button" data-passa="1">Próxima</button></div>
-      <a href="https://www.instagram.com/p/C-S0mEWOPK_/" target="_blank" rel="noopener" aria-label="RevelarSP, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
+      <a href="https://www.instagram.com/p/C-S0mEWOPK_/" target="_blank" rel="noopener" aria-label="RevelarSP: Multiculturalidade, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>

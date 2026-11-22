@@ -24,7 +24,7 @@ test('Bastidores leva ao vídeo de processo de Conexões', () => {
 
 test('Conquistas com os marcos reais', () => {
   const s = secao('conquistas');
-  assert.deepEqual([...s.matchAll(/<time datetime="(\d{4})">/g)].map(m => m[1]), ['2026', '2024', '2023']);
+  assert.deepEqual([...s.matchAll(/<time datetime="(\d{4})">/g)].map(m => m[1]), ['2026', '2023', '2023']);
   assert.match(s, /12 melhores projetos/);
 });
 

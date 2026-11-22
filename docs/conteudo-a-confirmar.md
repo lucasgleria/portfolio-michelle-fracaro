@@ -1,22 +1,34 @@
 # Conteúdo a confirmar com a Michelle
 
-O que foi assumido ao trocar os provisórios pelo conteúdo do Instagram (21/11/2026), e onde aparece no site.
+Ela respondeu às perguntas em 22/11/2026 e testou o site no celular, no iPad e no notebook, sem problemas. Este arquivo guarda o que já foi aplicado e o que depende de material dela.
 
-- **Anos de Figurino (Ele me bebeu), Projeto ICESP e Anel Paralelo:** tirados da data do post. As postagens de 05/08/2024 foram um lote de trabalhos anteriores, então os anos podem estar errados. Aparecem em Coleções (cards) e Conquistas (ICESP, 2024).
-- **E-mail de contato:** continua o provisório `contato@michelle.com` (Contato).
-- **Cidade "São Paulo":** deduzida da faculdade e do Bom Retiro (Contato).
-- **"Bailarina":** vem do vault, não do Instagram (abertura e Sobre).
-- **Bastidores (22/11/2026):** as texturas CSS deram lugar a fotos de processo tiradas dos posts. As legendas são interpretação nossa:
-  - Pesquisa: a caixa com o mapa do Bom Retiro (post C-S0qUmOYIH, RevelarSP);
-  - Materiais: a placa perfurada com amarrações (DCzDBYYuxYJ, foto 1, Conexões);
-  - Ateliê: as peças nos manequins (DCzDBYYuxYJ, foto 2);
-  - Banca: o vídeo da mesa de apresentação de Da Ausência à Presença.
-  
-  Confirmar se as leituras estão certas e se ela tem fotos de croqui, modelagem ou prova.
-- **Em movimento saiu do site:** o único vídeo era o passeio pela mesa da banca, sem corpo em movimento, e ele foi para Bastidores. A seção volta quando ela mandar vídeos verticais das peças no corpo.
-- **Coleções virou um varal (22/11/2026):** antes era uma grade, que ela tinha pedido para manter (feedback de 28/08/2025). Agora as fotos ficam soltas, inclinadas e com o título escrito por cima. Mostrar para ela aprovar.
-- **Fotos de cada projeto aberto:** clicar num card abre o projeto com 2 a 4 fotos, todas tiradas dos posts irmãos do Instagram. Rebel Noise: DSTcdy7j6b_, DSTcOO7ATF2, DSTcGSqgciR. Conexões: DCzD46FuKT3, DCzD1P-Ogbl, DCzCvDRuRiR (2). ICESP: C-S3dHjumdF, C-S3PYou34Z. Figurino: C-S36oWuNlF (1), C-S30Mvux1O. Editorial: DHVngE2R_Wq, DHVnFqkREoC. RevelarSP: C-S0fshuPCh. Anel: DDM31RGOWtm, DDM3xREuwYq. Graduação: DZ6GqrDsYl8. Ela pode querer trocar ou tirar alguma.
-- **Créditos e autorização de fotos de terceiros:** Debby Gram (RevelarSP), @fotograforogerioaffonso (Figurino), @miaich_ (Autorretrato) e o grupo do Editorial (@amnddh, @_rafamartelli). Falta saber se ela tem permissão e como quer creditar. Hoje o site não mostra créditos. A foto de Conexões usada no card foi feita por ela mesma.
-- **Qual "Conexões":** há três projetos com esse nome no Instagram (editorial de Estilismo I, ago/2024; coleção do 4º semestre, nov/2024, que é a do card; e "Coleção Conexões", Superfícies, jun/2025). Confirmar se ela quer o card do 4º semestre e como diferenciar os outros.
-- **Anel Paralelo:** ela agradece a @t_squillaro e @silviofabiodos pela orientação. Perguntar se quer esse crédito no card.
-- **Fotos escolhidas por projeto:** uma por card, entre as do post. A da graduação são croquis (o post não tem foto do look). Ela pode preferir outras.
+## Aplicado (22/11/2026)
+
+- **Sem balé:** saíram as menções a bailarina e dança (abertura, Sobre, contato e a opção "Figurino de dança" do formulário), porque elas nichavam o portfólio para figurino. O Sobre começa com "Sou designer de moda" e a formação virou "Design de Moda, Santa Marcelina, 2026".
+- **E-mail:** moraisfracaro@gmail.com. A cidade "São Paulo" está confirmada.
+- **Anos:** Projeto ICESP e Figurino (Ele me bebeu) são de 2023, do 2º semestre. Os outros estavam certos. O ano mudou nos cards, nos projetos e em Conquistas.
+- **Rebel Noise:** a foto das três modelos (DSTcGSqgciR) virou a capa, e as outras seguem na ordem anterior.
+- **Conexões em três cards**, com o semestre em cada um:
+  - 3º semestre (2024): o editorial de Estilismo I, com as fotos de fundo azul (C-TDNTMPGlH, C-TC7DVPA6D, C-TDYQsPifA), com crédito de Rogério Affonso;
+  - 4º semestre (2024): o card que já existia;
+  - 5º semestre (2025): Superfícies, "vertente mais comercial" (DLRDBq3u3uv, DLRCrikODYT, DLRDi6Guk3h).
+- **Projeto ICESP:** ficou só com as duas primeiras fotos. Crédito: em grupo com Amanda Ramalho e Luie Grotkowsky.
+- **Figurino:** crédito "Fotografia: Rogério Affonso".
+- **Editorial Códigos:** título novo, com crédito do grupo do post (@amnddh e @_rafamartelli).
+- **RevelarSP: Multiculturalidade:** o nome coube. Crédito "Fotos: Debby Gram".
+- **Sem crédito:** o Autorretrato e o Anel Paralelo (ela não quer a orientação no card).
+- **Bastidores:** as legendas e o link do YouTube dizem que é Conexões do 4º semestre.
+
+## Esperando material dela
+
+- **"Também faço":** ela vai mandar uma mensagem com outras coisas que faz, para colocar no Sobre.
+- **Da Ausência à Presença (TCC):** trocar a capa por uma foto do editorial que ela vai postar, e as fotos do projeto pelos desenhos dos looks (já postados) e pelas fotos que ela posta até 10/12. Haverá fotos novas no dia 8/12. O download automático do Instagram falhou em 22/11 (o Instagram pede login), então é preciso baixar com login ou ela mandar os arquivos.
+- **Anéis:** entram os outros dois anéis com post de processo. Ela pode mandar o vídeo, e o site leva ao post do processo. Ainda não temos esses posts nem os links. Os posts "Peça de Joalheria" de 25/09/2024 (DAW569usXtx, DAW6MWMsOKh, DAW6V-jsUbr) podem ser um deles; confirmar.
+- **Bastidores do TCC:** ela tem croquis, modelagem, costura, testes e foto ou vídeo do desfile, e acha que ficaria mais interessante que as fotos atuais, que vêm de projetos diferentes. Ela também vai mandar outro vídeo da banca final para substituir o 4º item (Banca).
+- **Em movimento:** na terça (24/11) ela pega na faculdade as fotos e os vídeos do desfile. A seção pode voltar com eles.
+- **Conquistas "tipo do meu currículo":** ela não lembra se mandou o currículo. Pedir, para alinhar formato e marcos.
+
+## Ainda sem resposta clara
+
+- **Varal no lugar da grade:** ela não comentou o varal em si, mas viu o site nos três aparelhos e disse que deu tudo certo. Vale uma confirmação rápida.
+- **Manequim com saia de tule na abertura:** a ideia veio do conceito de balé. Ele não cita dança, mas lembra um tutu. Perguntar se ela quer manter.

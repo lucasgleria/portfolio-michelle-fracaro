@@ -11,7 +11,7 @@ test('noindex existe se e somente se o selo de prévia existe', () => {
 });
 
 test('descrição para buscadores e compartilhamento', () => {
-  assert.match(html, /<meta name="description" content="Portfólio de moda de Michelle Fracaro, estilista formada pela Faculdade Santa Marcelina\.">/);
+  assert.match(html, /<meta name="description" content="Portfólio de moda de Michelle Fracaro, designer de moda formada pela Faculdade Santa Marcelina\.">/);
 });
 
 test('build roda os testes antes e publica só o site', () => {
