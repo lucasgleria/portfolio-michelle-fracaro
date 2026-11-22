@@ -688,16 +688,24 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     if(b.width) bordado.setAttribute('viewBox',[b.x-12,b.y-12,b.width+24,b.height+24].map(Math.round).join(' '));
   }
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(ajustaBordado); else ajustaBordado();
+  /* a abertura depende do quanto falta para o fim da página (chega a 1 no fim, em qualquer tela, e não oscila
+     quando a barra do navegador do celular encolhe); a gaveta persegue esse alvo suavemente a cada quadro */
   if(!calmo){
-    var pedeGaveta=false;
-    function abreGaveta(){
-      pedeGaveta=false;
-      var r=gaveta.getBoundingClientRect(), h=window.innerHeight;
-      var p=Math.min(1,Math.max(0,(h-r.top)/(h*.85)));
-      gaveta.style.setProperty('--abre',(.25+.65*p).toFixed(3));
+    var alvoG=.25, atualG=.25, correndo=false;
+    function passoGaveta(){
+      atualG+=(alvoG-atualG)*.12;
+      if(Math.abs(alvoG-atualG)<.001){atualG=alvoG;correndo=false;}
+      gaveta.style.setProperty('--abre',atualG.toFixed(3));
+      if(correndo)requestAnimationFrame(passoGaveta);
     }
-    window.addEventListener('scroll',function(){if(!pedeGaveta){pedeGaveta=true;requestAnimationFrame(abreGaveta);}},{passive:true});
-    abreGaveta();
+    function medeGaveta(){
+      var resta=document.documentElement.scrollHeight-(window.scrollY+window.innerHeight);
+      alvoG=.25+.75*Math.min(1,Math.max(0,1-resta/(gaveta.parentNode.offsetHeight+gaveta.offsetHeight)));
+      if(!correndo){correndo=true;requestAnimationFrame(passoGaveta);}
+    }
+    window.addEventListener('scroll',medeGaveta,{passive:true});
+    window.addEventListener('resize',medeGaveta);
+    medeGaveta();
   }
 
   /* Manequim de moulage com saia de tule */
