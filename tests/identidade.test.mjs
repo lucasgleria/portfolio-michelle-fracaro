@@ -29,3 +29,12 @@ test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {
   assert.match(c['aria-label'], /dissolver/);
   assert.match(html, /<p class="dica">Arraste para girar · clique para dissolver<\/p>/);
 });
+
+test('rodapé com a mesa de moldes e o nome em relevo, ambos decorativos', () => {
+  const rodape = html.match(/<footer[^>]*>([\s\S]*?)<\/footer>/)[1];
+  const mesa = rodape.match(/<div class="mesa" aria-hidden="true">([\s\S]*?)<\/div>\s*<p class="relevo"/);
+  assert.ok(mesa, 'mesa decorativa antes do relevo');
+  assert.deepEqual([...mesa[1].matchAll(/data-molde="([a-z]+)"/g)].map(m => m[1]), ['frente', 'costas', 'manga', 'saia', 'gola']);
+  assert.match(rodape, /<p class="relevo" aria-hidden="true">Michelle Fracaro<\/p>/);
+  assert.match(rodape, /© 2026 Michelle Fracaro/);
+});
