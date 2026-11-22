@@ -2,7 +2,7 @@
 
 Site-portfólio da estilista Michelle Fracaro: uma página só (`index.html`), com manequim de moulage 3D em three.js, coleções, vídeo e contato. As fotos e o vídeo ficam em `assets/`.
 
-Demo: _(link entra depois do primeiro deploy)_
+Demo: https://portfolio-michelle-fracaro-demo.vercel.app
 
 ## Testes
 
