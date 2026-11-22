@@ -1,0 +1,4 @@
+{
+  "buildCommand": "node --test \"tests/*.test.mjs\" && rm -rf public && mkdir public && cp -r index.html assets public/",
+  "outputDirectory": "public"
+}
