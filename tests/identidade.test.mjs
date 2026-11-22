@@ -20,3 +20,12 @@ test('Contato aponta para o Instagram real', () => {
   assert.match(s, />@michelle_fracaro</);
   assert.match(s, />São Paulo</);
 });
+
+test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {
+  const [c] = tags('canvas', html.match(/<div class="palco3d">[\s\S]*?<\/div>/)[0]);
+  assert.equal(c.id, 'manequim');
+  assert.equal(c.tabindex, '0');
+  assert.equal(c.role, 'button');
+  assert.match(c['aria-label'], /dissolver/);
+  assert.match(html, /<p class="dica">Arraste para girar · clique para dissolver<\/p>/);
+});
