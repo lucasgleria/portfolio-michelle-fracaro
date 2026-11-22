@@ -26,6 +26,9 @@ export async function verificar(base, buscar = fetch) {
     falhas.push(previa ? '/: prévia sem meta noindex' : '/: meta noindex na versão final');
 
   const midias = new Set([...html.matchAll(/\b(?:src|poster)="(assets\/[^"]+)"/g)].map(m => m[1]));
+  // a imagem de prévia do link aponta para um endereço absoluto; confere o mesmo caminho no endereço verificado
+  const og = html.match(/<meta property="og:image" content="([^"]+)">/);
+  if (og) midias.add(new URL(og[1]).pathname.slice(1));
   for (const m of midias) {
     const r = await pedir(m);
     if (!r) continue;

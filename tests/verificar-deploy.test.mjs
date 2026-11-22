@@ -9,7 +9,7 @@ const TIPOS = { webp: 'image/webp', mp4: 'video/mp4', jpg: 'image/jpeg' };
 // fetch falso: responde a partir de um mapa {caminho: resposta}; o que não está no mapa é 404
 function falso(sobrescritas = {}) {
   const mapa = { '': { status: 200, type: 'text/html; charset=utf-8', body: html } };
-  for (const s of [...tags('img'), ...tags('video')].flatMap(a => [a.src, a.poster]).filter(Boolean))
+  for (const s of [...tags('img'), ...tags('video')].flatMap(a => [a.src, a.poster]).filter(Boolean).concat('assets/img/og-michelle-fracaro.jpg'))
     mapa[s] = { status: 200, type: TIPOS[s.split('.').pop()], body: '' };
   Object.assign(mapa, sobrescritas);
   return async url => {
@@ -53,3 +53,8 @@ test('falha se prévia sem noindex', async () => {
 });
 
 test('aceita a base com barra no final', async () => assert.deepEqual(await verificar(BASE + '/', falso()), []));
+
+test('falha se a imagem de prévia do link não abrir', async () => {
+  const f = await verificar(BASE, falso({ 'assets/img/og-michelle-fracaro.jpg': { status: 404 } }));
+  assert.ok(f.some(x => x.includes('og-michelle-fracaro.jpg')));
+});

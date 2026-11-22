@@ -320,6 +320,7 @@ Depois, o Lucas faz um commit pequeno e um push (por exemplo, os links do Step 5
 
 - `gh repo edit <conta-dela>/portfolio-michelle-fracaro --homepage https://portfolio-michelle-fracaro.vercel.app`.
 - `README.md` e `CLAUDE.md` passam a apontar para o endereço final.
+- No `<head>` do `index.html`, `og:url` e `og:image` passam para `https://portfolio-michelle-fracaro.vercel.app/` (e o `BASE` do teste de prévia do link em `tests/publicacao.test.mjs`). Sem isso, a prévia no WhatsApp quebra quando a demo for apagada no Step 7.
 - Commit `docs: endereço final na conta da Michelle` e push.
 - O Lucas manda o link final para ela.
 
