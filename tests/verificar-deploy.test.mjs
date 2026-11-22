@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { html, tags } from './pagina.mjs';
 import { verificar } from '../scripts/verificar-deploy.mjs';
 
-const BASE = 'https://exemplo.vercel.app';
+const BASE = 'https://portfolio-michelle-fracaro-demo.vercel.app';
 const TIPOS = { webp: 'image/webp', mp4: 'video/mp4', jpg: 'image/jpeg' };
 
 // fetch falso: responde a partir de um mapa {caminho: resposta}; o que não está no mapa é 404
@@ -57,4 +57,10 @@ test('aceita a base com barra no final', async () => assert.deepEqual(await veri
 test('falha se a imagem de prévia do link não abrir', async () => {
   const f = await verificar(BASE, falso({ 'assets/img/og-michelle-fracaro.jpg': { status: 404 } }));
   assert.ok(f.some(x => x.includes('og-michelle-fracaro.jpg')));
+});
+
+test('falha se a prévia do link aponta para outro endereço', async () => {
+  const f = await verificar('https://outro.vercel.app', async url => (await falso()(url.replace('https://outro.vercel.app', BASE))));
+  assert.ok(f.some(x => /og:image/.test(x)));
+  assert.ok(f.some(x => /og:url/.test(x)));
 });

@@ -55,12 +55,12 @@ p{margin:0}
 .mostrador.claro{--halo:rgba(234,242,251,.97);--halo2:rgba(234,242,251,.75);--tinta:var(--palco);--ativa:var(--preto)}
 .mostrador ul{list-style:none;margin:0;padding:0}
 .mostrador li{position:absolute;left:calc(50% + sin(var(--a)) * var(--rx));bottom:calc(16px + cos(var(--a)) * var(--ry));transform:translate(-50%,50%)}
-.mostrador a{pointer-events:auto;display:block;padding:4px 6px;font-family:var(--display);font-size:18px;text-decoration:none;white-space:nowrap;color:var(--tinta);opacity:.62;transition:opacity .3s,color .3s}
+.mostrador a{pointer-events:auto;display:block;padding:4px 6px;font-family:var(--display);font-size:18px;text-decoration:none;white-space:nowrap;color:var(--tinta);opacity:.85;transition:opacity .3s,color .3s}
 .mostrador a:hover{opacity:1}
 .mostrador a[aria-current]{color:var(--ativa);opacity:1}
 .agulha{position:absolute;left:50%;bottom:16px;width:10px;height:62px;color:var(--tinta);margin-left:-5px;transform-origin:50% 100%;transform:rotate(var(--agulha,-90deg));transition:transform .7s cubic-bezier(.3,1.35,.5,1)}
 .agulha svg{display:block;width:100%;height:100%;overflow:visible}
-html:has(dialog[open]) .mostrador,body:has(form :focus) .mostrador{opacity:0}
+html:has(dialog[open]) .mostrador,body:has(form :focus) .mostrador{opacity:0;visibility:hidden}
 html:has(dialog[open]){overflow:hidden}
 @media (max-width:820px){.mostrador{--rx:150px;--ry:66px;height:104px}.mostrador[data-secao="inicio"]{opacity:0;visibility:hidden}.mostrador a{font-size:15px}.agulha{height:42px}}
 
@@ -126,7 +126,7 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .varal-ativo{height:var(--altura-varal,auto);padding-top:0;padding-bottom:0}
 .varal-ativo .palco-varal{position:sticky;top:0;height:100svh;overflow:hidden;padding-top:clamp(32px,8vh,96px)}
 .varal-ativo .peca{margin-top:calc(var(--y) * .6svh)}
-.varal-ativo .peca .foto{height:clamp(200px,calc(var(--h) * .82svh),640px)}
+.varal-ativo .peca .foto{height:clamp(200px,min(calc(var(--h) * .82svh),calc(100svh - 370px)),640px)}
 .varal-ativo .trilho{overflow:visible;padding-bottom:150px;transform:translate3d(var(--x,0px),0,0);will-change:transform}
 .varal-ativo .cabeca{margin-bottom:clamp(16px,3vh,40px)}
 
@@ -384,7 +384,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 <div class="projetos">
 <dialog id="projeto-da-ausencia-a-presenca" class="projeto" aria-labelledby="t-da-ausencia-a-presenca">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Da Ausência à Presença">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Da Ausência à Presença">
       <img src="assets/img/tgi-da-ausencia-a-presenca.webp" alt="Croquis da coleção Da Ausência à Presença" width="1080" height="988" loading="lazy" decoding="async">
       <img src="assets/img/tgi-da-ausencia-a-presenca-2.webp" alt="Segunda prancha de croquis da coleção, em tons de vinho" width="1080" height="922" loading="lazy" decoding="async">
     </div>
@@ -400,7 +400,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-rebel-noise" class="projeto" aria-labelledby="t-rebel-noise">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Rebel Noise">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Rebel Noise">
       <img src="assets/img/rebel-noise.webp" alt="Look em jeans da coleção Rebel Noise" width="1080" height="1080" loading="lazy" decoding="async">
       <img src="assets/img/rebel-noise-2.webp" alt="Macacão em jeans com barra ampla" width="1080" height="1245" loading="lazy" decoding="async">
       <img src="assets/img/rebel-noise-3.webp" alt="Modelo sentada num pedestal com look em jeans" width="1080" height="1080" loading="lazy" decoding="async">
@@ -418,7 +418,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-conexoes" class="projeto" aria-labelledby="t-conexoes">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Conexões">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Conexões">
       <img src="assets/img/conexoes.webp" alt="Detalhe de mãos e acessórios da coleção Conexões" width="1440" height="960" loading="lazy" decoding="async">
       <img src="assets/img/conexoes-2.webp" alt="Duas modelos com peças de retalhos em preto e branco" width="1440" height="1800" loading="lazy" decoding="async">
       <img src="assets/img/conexoes-3.webp" alt="Modelos segurando argolas de metal diante do rosto" width="1390" height="960" loading="lazy" decoding="async">
@@ -436,7 +436,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-icesp" class="projeto" aria-labelledby="t-icesp">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Projeto ICESP">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Projeto ICESP">
       <img src="assets/img/icesp.webp" alt="Roupa de papel com guizos do Projeto ICESP" width="720" height="720" loading="lazy" decoding="async">
       <img src="assets/img/icesp-2.webp" alt="A roupa de papel apresentada no ICESP, ao lado do grupo" width="720" height="720" loading="lazy" decoding="async">
       <img src="assets/img/icesp-3.webp" alt="Pessoa vestindo a roupa de papel, abraçada pelo grupo" width="720" height="720" loading="lazy" decoding="async">
@@ -453,7 +453,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-ele-me-bebeu" class="projeto" aria-labelledby="t-ele-me-bebeu">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Ele me bebeu">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Ele me bebeu">
       <img src="assets/img/figurino-ele-me-bebeu.webp" alt="Figurino inspirado no conto Ele me bebeu" width="720" height="827" loading="lazy" decoding="async">
       <img src="assets/img/figurino-ele-me-bebeu-2.webp" alt="Vestido lilás e azul do figurino, visto de lado" width="719" height="833" loading="lazy" decoding="async">
       <img src="assets/img/figurino-ele-me-bebeu-3.webp" alt="Rosto com maquiagem prateada sob um véu de tule" width="720" height="825" loading="lazy" decoding="async">
@@ -470,7 +470,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-editorial" class="projeto" aria-labelledby="t-editorial">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Editorial">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Editorial">
       <img src="assets/img/editorial.webp" alt="Foto do editorial de moda" width="1080" height="1350" loading="lazy" decoding="async">
       <img src="assets/img/editorial-2.webp" alt="Modelo sentada no chão com saia preta e tecido vermelho" width="1080" height="1080" loading="lazy" decoding="async">
       <img src="assets/img/editorial-3.webp" alt="Modelo de perfil com corpete bordado e saia em camadas" width="1080" height="1350" loading="lazy" decoding="async">
@@ -487,7 +487,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-revelarsp" class="projeto" aria-labelledby="t-revelarsp">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de RevelarSP">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de RevelarSP">
       <img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async">
       <img src="assets/img/revelarsp-2.webp" alt="Outra modelo com a roupa de papel do RevelarSP, em estúdio" width="719" height="805" loading="lazy" decoding="async">
     </div>
@@ -503,7 +503,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 </dialog>
 <dialog id="projeto-anel-paralelo" class="projeto" aria-labelledby="t-anel-paralelo">
   <div class="interno">
-    <div class="galeria" tabindex="0" aria-label="Fotos de Anel Paralelo">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Anel Paralelo">
       <img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async">
       <img src="assets/img/anel-paralelo-2.webp" alt="Anel Paralelo visto de frente" width="1439" height="1440" loading="lazy" decoding="async">
       <img src="assets/img/anel-paralelo-3.webp" alt="Anel Paralelo visto de cima, com as duas faixas paralelas" width="1440" height="1440" loading="lazy" decoding="async">
@@ -603,11 +603,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
      a fileira se curva em direção às bordas e as fotos balançam com a velocidade, como tecido pendurado */
   var sec=document.getElementById('colecoes'), trilho=sec.querySelector('.trilho'), pecas=[].slice.call(trilho.children);
   var largo=window.matchMedia('(min-width: 821px) and (min-height: 560px)');
-  var preso=false, xAntes=0, balanco=pecas.map(function(){return 0;}), perto=false;
+  var preso=false, xAntes=0, balanco=pecas.map(function(){return 0;}), perto=false, parado=false;
   /* quanto o trilho anda: até a última foto parar a uma margem da borda direita */
   function curso(){var u=pecas[pecas.length-1];return Math.max(0,u.offsetLeft+u.offsetWidth+parseFloat(getComputedStyle(trilho).paddingLeft)-window.innerWidth);}
   function montaVaral(){
-    preso=largo.matches;
+    preso=largo.matches; parado=false;
     sec.classList.toggle('varal-ativo',preso);
     if(preso) sec.style.setProperty('--altura-varal',(curso()+window.innerHeight)+'px');
     else{sec.style.removeProperty('--altura-varal');trilho.style.removeProperty('--x');}
@@ -628,6 +628,9 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     } else x=-trilho.scrollLeft;
     var v=x-xAntes; xAntes=x;
     if(calmo)return;
+    /* sem movimento e com o balanço assentado, o quadro anterior continua valendo */
+    if(Math.abs(v)<.01&&parado)return;
+    parado=Math.abs(v)<.01&&balanco.every(function(b){return Math.abs(b)<.01;});
     var esquerda=trilho.getBoundingClientRect().left-trilho.scrollLeft;
     pecas.forEach(function(el,i){
       var d=(esquerda+el.offsetLeft+el.offsetWidth/2-vw/2)/(vw/2);
@@ -644,7 +647,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   palco.addEventListener('scroll',function(){if(preso)palco.scrollTop=palco.scrollLeft=0;});
   /* com o teclado, levar a foto focada para o meio da tela */
   trilho.addEventListener('focusin',function(e){
-    var li=e.target.closest('.peca'); if(!li||!preso)return;
+    var li=e.target.closest('.peca'); if(!li||!preso||!e.target.matches(':focus-visible'))return;
     var p=Math.max(0,Math.min(1,(li.offsetLeft+li.offsetWidth/2-window.innerWidth/2)/curso()));
     /* depois da rolagem que o próprio navegador faz para o foco */
     setTimeout(function(){window.scrollTo({top:sec.offsetTop+p*(sec.offsetHeight-window.innerHeight),behavior:calmo?'instant':'smooth'});},80);
@@ -675,8 +678,8 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     b.addEventListener('focus',carrega);
     b.addEventListener('click',function(){
       ultimoBotao=b; carrega();
-      var g=d.querySelector('.galeria'); g.scrollLeft=0; contador(d);
-      comTransicao(function(){d.showModal();},b.parentNode.querySelector('img'),g.querySelector('img'));
+      var g=d.querySelector('.galeria');
+      comTransicao(function(){d.showModal();g.scrollLeft=0;contador(d);},b.parentNode.querySelector('img'),g.querySelector('img'));
     });
   });
   [].forEach.call(document.querySelectorAll('.projeto'),function(d){
@@ -881,7 +884,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   });
   canvas.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();dissolve();}});
   canvas.addEventListener('pointercancel',function(){arrastando=false;});
-  window.addEventListener('scroll',function(){var d=window.scrollY-ultimoScroll;ultimoScroll=window.scrollY;giroScroll+=d*.004;},{passive:true});
+  window.addEventListener('scroll',function(){var d=window.scrollY-ultimoScroll;ultimoScroll=window.scrollY;if(!calmo)giroScroll+=d*.004;},{passive:true});
 
   function ajusta(){
     var w=canvas.clientWidth,h=canvas.clientHeight;

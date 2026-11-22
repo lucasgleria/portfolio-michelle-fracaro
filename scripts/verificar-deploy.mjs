@@ -28,13 +28,20 @@ export async function verificar(base, buscar = fetch) {
   const midias = new Set([...html.matchAll(/\b(?:src|poster)="(assets\/[^"]+)"/g)].map(m => m[1]));
   // a imagem de prévia do link aponta para um endereço absoluto; confere o mesmo caminho no endereço verificado
   const og = html.match(/<meta property="og:image" content="([^"]+)">/);
-  if (og) midias.add(new URL(og[1]).pathname.slice(1));
+  if (!og) falhas.push('/: sem og:image (prévia do link no WhatsApp)');
+  else {
+    const img = new URL(og[1]);
+    if (img.host !== new URL(base).host) falhas.push(`/: og:image aponta para ${img.host}, não para este endereço`);
+    midias.add(img.pathname.slice(1));
+  }
+  const ogUrl = html.match(/<meta property="og:url" content="([^"]+)">/);
+  if (!ogUrl || new URL(ogUrl[1]).host !== new URL(base).host) falhas.push('/: og:url não aponta para este endereço');
   for (const m of midias) {
     const r = await pedir(m);
     if (!r) continue;
     const tipo = r.headers.get('content-type') ?? '';
     if (r.status !== 200) falhas.push(`${m}: status ${r.status}, esperado 200`);
-    else if (!tipo.startsWith(TIPOS[m.split('.').pop()])) falhas.push(`${m}: content-type "${tipo}"`);
+    else if (TIPOS[m.split('.').pop()] && !tipo.startsWith(TIPOS[m.split('.').pop()])) falhas.push(`${m}: content-type "${tipo}"`);
   }
 
   for (const c of INTERNOS) {

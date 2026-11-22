@@ -21,6 +21,7 @@ test('caminhos de mídia são ASCII minúsculo e existem', () => {
 test('imagens têm alt, tamanho real e carregamento preguiçoso', () => {
   for (const a of tags('img')) {
     assert.ok(a.alt?.trim(), `alt vazio em ${a.src}`);
+    assert.match(a.src, /\.webp$/, `${a.src}: as fotos precisam estar em .webp (veja o README)`);
     const { w, h } = dimensoesWebp(a.src);
     assert.equal(Number(a.width), w, a.src);
     assert.equal(Number(a.height), h, a.src);
