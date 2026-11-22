@@ -177,21 +177,30 @@ form .botao{justify-self:start;cursor:pointer;font-family:inherit}
 .aviso{font-size:15px;color:var(--tule);min-height:1.6em}
 @media (max-width:820px){.contato{grid-template-columns:1fr}}
 
-/* Rodapé: moldes de papel que caem na mesa e o nome gravado no próprio azul do fundo */
-footer{position:relative;overflow:hidden;padding:clamp(48px,6vw,88px) var(--gutter) 150px;border-top:1px solid var(--linha);font-size:14px;color:var(--tule)}
-.mesa{--mx:0;--my:0;position:relative;height:clamp(200px,27vw,390px)}
-.molde{position:absolute;left:var(--left);top:var(--top);width:var(--w);height:auto;overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.4));
-  transform:translate(calc(var(--mx) * var(--p) * 1px),calc(var(--my) * var(--p) * 1px)) rotate(var(--r));transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .5s}
-.mesa.esperando .molde{opacity:0;transform:translate(var(--x0),var(--y0)) rotate(var(--r0))}
-.mesa.pousando .molde{transition-duration:1.2s,.6s;transition-delay:calc(var(--i) * 110ms)}
-.molde .papel{fill:rgba(168,199,230,.09);stroke:var(--tule);stroke-width:1.2}
-.molde .costura{fill:none;stroke:var(--tule);stroke-width:.8;stroke-dasharray:4 3;opacity:.6}
-.molde .marca{fill:none;stroke:var(--branco);stroke-width:.9;opacity:.8}
-.molde text{font-family:var(--display);font-style:italic;font-size:15px;fill:var(--branco)}
-.relevo{margin:clamp(8px,2vw,24px) 0 clamp(20px,3vw,40px);font-family:var(--display);font-size:clamp(44px,11.6vw,210px);line-height:.95;letter-spacing:-.02em;white-space:nowrap;text-align:center;color:var(--palco);
-  text-shadow:0 -1px 0 rgba(0,0,0,.65),0 1px 0 rgba(168,199,230,.28),0 3px 10px rgba(0,0,0,.35);user-select:none}
+/* Rodapé: uma gaveta entreaberta que sai de baixo de Contato. O fundo é forrado de tecido e tem o nome bordado;
+   --abre (0 a 1) é ligado à rolagem e puxa a gaveta para fora. */
+footer{position:relative;overflow:hidden;padding:0 var(--gutter) 150px;font-size:14px;color:var(--tule)}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-index:2;background:linear-gradient(var(--palco-fundo),rgba(10,21,41,0));border-top:1px solid var(--linha)}
+.gaveta{--abre:.55;--fundo:clamp(260px,32vw,460px);--parede:clamp(44px,5vw,80px);position:relative;height:calc(var(--fundo) * .78);perspective:1200px;perspective-origin:50% -60%;margin-bottom:clamp(20px,3vw,40px)}
+.caixa{position:absolute;left:0;right:0;bottom:0;height:var(--fundo);transform-style:preserve-3d;transform-origin:50% 100%;
+  transform:rotateX(48deg) translateY(calc((1 - var(--abre)) * -38%))}
+.caixa>div{position:absolute;background:var(--palco)}
+.fundo{inset:0;display:grid;place-items:center;
+  background:repeating-linear-gradient(0deg,rgba(168,199,230,.035) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(168,199,230,.035) 0 1px,transparent 1px 4px),var(--palco);
+  box-shadow:inset 0 40px 60px rgba(0,0,0,.55),inset 0 0 0 1px var(--linha)}
+.parede{background:linear-gradient(var(--palco-fundo),var(--palco))}
+.parede.tras{left:0;right:0;top:0;height:var(--parede);transform-origin:50% 0;transform:rotateX(90deg);background:linear-gradient(0deg,var(--palco-fundo),#060D1A)}
+.parede.esq{top:0;bottom:0;left:0;width:var(--parede);transform-origin:0 50%;transform:rotateY(-90deg);background:linear-gradient(90deg,#060D1A,var(--palco-fundo))}
+.parede.dir{top:0;bottom:0;right:0;width:var(--parede);transform-origin:100% 50%;transform:rotateY(90deg);background:linear-gradient(-90deg,#060D1A,var(--palco-fundo))}
+.parede.frente{left:0;right:0;bottom:0;height:calc(var(--parede) * .7);transform-origin:50% 100%;transform:rotateX(-90deg);background:linear-gradient(var(--palco),var(--palco-fundo));box-shadow:inset 0 1px 0 rgba(168,199,230,.35)}
+.parede.frente::after{content:"";position:absolute;left:50%;top:38%;width:clamp(60px,8vw,120px);height:4px;margin-left:calc(clamp(60px,8vw,120px) / -2);border-radius:2px;background:var(--tule);opacity:.55}
+.bordado{width:84%;height:auto;overflow:visible}
+.bordado .nome{font-family:var(--display);font-size:150px;letter-spacing:-.02em}
+.bordado .sombra{fill:rgba(0,0,0,.65)}
+.bordado .luz{fill:rgba(168,199,230,.28)}
+.bordado .corpo{fill:var(--palco)}
+.bordado .pesponto{fill:none;stroke:var(--tule);stroke-width:2.6;stroke-dasharray:5 4;stroke-linecap:round;opacity:.7}
 .rodape-linhas{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
-@media (max-width:820px){.molde{width:calc(var(--w) * .42)}}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition:none !important}
@@ -504,14 +513,23 @@ footer{position:relative;overflow:hidden;padding:clamp(48px,6vw,88px) var(--gutt
 </div>
 
 <footer>
-  <div class="mesa" aria-hidden="true">
-    <svg class="molde" data-molde="frente" viewBox="0 0 120 170" style="--left:14%;--top:18%;--w:200px;--r:-12deg;--x0:-160px;--y0:-300px;--r0:-55deg;--p:24"><path class="papel" d="M14 20 C30 38 48 38 60 34 L98 22 C92 50 100 66 110 76 L106 160 L14 160 Z"/><path class="costura" d="M14 20 C30 38 48 38 60 34 L98 22 C92 50 100 66 110 76 L106 160 L14 160 Z" transform="translate(7.2 10.2) scale(0.88)" vector-effect="non-scaling-stroke"/><path class="marca" d="M44 160 L52 104 L60 160 M110 104 h-6 M14 104 h6 M82 72 V140 M78 78 L82 72 L86 78 M78 134 L82 140 L86 134"/><text x="60" y="128" text-anchor="middle">Frente</text></svg>
-    <svg class="molde" data-molde="costas" viewBox="0 0 120 170" style="--left:27%;--top:6%;--w:200px;--r:7deg;--x0:90px;--y0:-340px;--r0:48deg;--p:-18"><path class="papel" d="M106 18 C92 24 72 24 60 22 L20 30 C28 54 20 68 10 78 L14 160 L106 160 Z"/><path class="costura" d="M106 18 C92 24 72 24 60 22 L20 30 C28 54 20 68 10 78 L14 160 L106 160 Z" transform="translate(7.2 10.2) scale(0.88)" vector-effect="non-scaling-stroke"/><path class="marca" d="M64 160 L70 110 L76 160 M10 104 h6 M106 104 h-6 M38 72 V140 M34 78 L38 72 L42 78 M34 134 L38 140 L42 134"/><text x="60" y="128" text-anchor="middle">Costas</text></svg>
-    <svg class="molde" data-molde="manga" viewBox="0 0 120 170" style="--left:58%;--top:20%;--w:190px;--r:16deg;--x0:-60px;--y0:-280px;--r0:-70deg;--p:30"><path class="papel" d="M8 70 C20 30 44 12 60 12 C76 12 100 30 112 70 L98 162 L22 162 Z"/><path class="costura" d="M8 70 C20 30 44 12 60 12 C76 12 100 30 112 70 L98 162 L22 162 Z" transform="translate(7.2 10.2) scale(0.88)" vector-effect="non-scaling-stroke"/><path class="marca" d="M60 12 v8 M16 104 h6 M104 104 h-6 M60 48 V146 M56 54 L60 48 L64 54 M56 140 L60 146 L64 140"/><text x="60" y="98" text-anchor="middle">Manga</text></svg>
-    <svg class="molde" data-molde="saia" viewBox="0 0 120 176" style="--left:43%;--top:0%;--w:215px;--r:-5deg;--x0:180px;--y0:-320px;--r0:60deg;--p:-22"><path class="papel" d="M28 12 L92 12 L114 164 L6 164 Z"/><path class="costura" d="M28 12 L92 12 L114 164 L6 164 Z" transform="translate(7.2 10.56) scale(0.88)" vector-effect="non-scaling-stroke"/><path class="marca" d="M44 12 L47 52 L50 12 M70 12 L73 52 L76 12 M60 64 V150 M56 70 L60 64 L64 70 M56 144 L60 150 L64 144"/><text x="60" y="118" text-anchor="middle">Saia</text></svg>
-    <svg class="molde" data-molde="gola" viewBox="0 0 160 70" style="--left:70%;--top:54%;--w:230px;--r:-6deg;--x0:120px;--y0:-260px;--r0:-40deg;--p:16"><path class="papel" d="M8 46 C40 6 120 6 152 46 L140 62 C112 30 48 30 20 62 Z"/><path class="costura" d="M8 46 C40 6 120 6 152 46 L140 62 C112 30 48 30 20 62 Z" transform="translate(9.6 4.2) scale(0.88)" vector-effect="non-scaling-stroke"/><path class="marca" d="M80 14 v8 M20 58 l5 -5 M140 58 l-5 -5"/><text x="80" y="40" text-anchor="middle">Gola</text></svg>
+  <div class="gaveta" aria-hidden="true">
+    <div class="caixa">
+      <div class="fundo">
+        <svg class="bordado" viewBox="0 0 1120 180">
+          <defs><clipPath id="letras"><text class="nome" x="560" y="140" text-anchor="middle">Michelle Fracaro</text></clipPath></defs>
+          <text class="nome sombra" x="560" y="140" text-anchor="middle" transform="translate(0 -3)">Michelle Fracaro</text>
+          <text class="nome luz" x="560" y="140" text-anchor="middle" transform="translate(0 3)">Michelle Fracaro</text>
+          <text class="nome corpo" x="560" y="140" text-anchor="middle">Michelle Fracaro</text>
+          <text class="nome pesponto" x="560" y="140" text-anchor="middle" clip-path="url(#letras)">Michelle Fracaro</text>
+        </svg>
+      </div>
+      <div class="parede tras"></div>
+      <div class="parede esq"></div>
+      <div class="parede dir"></div>
+      <div class="parede frente"></div>
+    </div>
   </div>
-  <p class="relevo" aria-hidden="true">Michelle Fracaro</p>
   <div class="rodape-linhas">
     <span>© 2026 Michelle Fracaro · Design de moda</span>
     <span>Prévia: alguns textos ainda provisórios · site por Lucas Leria</span>
@@ -663,26 +681,23 @@ footer{position:relative;overflow:hidden;padding:clamp(48px,6vw,88px) var(--gutt
     g.addEventListener('scroll',function(){contador(d);},{passive:true});
   });
 
-  /* Rodapé: os moldes caem na mesa quando ela aparece e, com o mouse, acompanham o cursor de leve */
-  var mesa=document.querySelector('.mesa'), rodape=mesa.parentNode;
-  [].forEach.call(mesa.children,function(m,i){m.style.setProperty('--i',i);});
-  if(!calmo&&'IntersectionObserver' in window){
-    mesa.classList.add('esperando');
-    var vigia=new IntersectionObserver(function(e){
-      if(!e[0].isIntersecting)return;
-      vigia.disconnect();
-      mesa.classList.add('pousando');
-      requestAnimationFrame(function(){mesa.classList.remove('esperando');});
-      setTimeout(function(){mesa.classList.remove('pousando');},1200+110*mesa.children.length+100);
-    },{threshold:.35});
-    vigia.observe(mesa);
-    rodape.addEventListener('pointermove',function(e){
-      if(e.pointerType!=='mouse')return;
-      var r=rodape.getBoundingClientRect();
-      mesa.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));
-      mesa.style.setProperty('--my',((e.clientY-r.top)/r.height-.5).toFixed(3));
-    });
-    rodape.addEventListener('pointerleave',function(){mesa.style.setProperty('--mx',0);mesa.style.setProperty('--my',0);});
+  /* Rodapé: a gaveta abre conforme o rodapé entra na tela; o bordado se ajusta ao tamanho real das letras */
+  var gaveta=document.querySelector('.gaveta'), bordado=gaveta.querySelector('.bordado');
+  function ajustaBordado(){
+    var b=bordado.querySelector('.corpo').getBBox();
+    if(b.width) bordado.setAttribute('viewBox',[b.x-12,b.y-12,b.width+24,b.height+24].map(Math.round).join(' '));
+  }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(ajustaBordado); else ajustaBordado();
+  if(!calmo){
+    var pedeGaveta=false;
+    function abreGaveta(){
+      pedeGaveta=false;
+      var r=gaveta.getBoundingClientRect(), h=window.innerHeight;
+      var p=Math.min(1,Math.max(0,(h-r.top)/(h*.85)));
+      gaveta.style.setProperty('--abre',(.25+.65*p).toFixed(3));
+    }
+    window.addEventListener('scroll',function(){if(!pedeGaveta){pedeGaveta=true;requestAnimationFrame(abreGaveta);}},{passive:true});
+    abreGaveta();
   }
 
   /* Manequim de moulage com saia de tule */

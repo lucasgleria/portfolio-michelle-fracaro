@@ -30,11 +30,15 @@ test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {
   assert.match(html, /<p class="dica">Arraste para girar · clique para dissolver<\/p>/);
 });
 
-test('rodapé com a mesa de moldes e o nome em relevo, ambos decorativos', () => {
+test('rodapé é uma gaveta entreaberta com o nome bordado no forro', () => {
   const rodape = html.match(/<footer[^>]*>([\s\S]*?)<\/footer>/)[1];
-  const mesa = rodape.match(/<div class="mesa" aria-hidden="true">([\s\S]*?)<\/div>\s*<p class="relevo"/);
-  assert.ok(mesa, 'mesa decorativa antes do relevo');
-  assert.deepEqual([...mesa[1].matchAll(/data-molde="([a-z]+)"/g)].map(m => m[1]), ['frente', 'costas', 'manga', 'saia', 'gola']);
-  assert.match(rodape, /<p class="relevo" aria-hidden="true">Michelle Fracaro<\/p>/);
+  const gaveta = rodape.match(/<div class="gaveta" aria-hidden="true">([\s\S]*?)<div class="rodape-linhas">/);
+  assert.ok(gaveta, 'gaveta decorativa antes dos textos do rodapé');
+  for (const p of ['fundo', 'parede tras', 'parede esq', 'parede dir']) assert.match(gaveta[1], new RegExp(`class="${p}"`));
+  const bordado = gaveta[1].match(/<svg class="bordado"[\s\S]*?<\/svg>/);
+  assert.ok(bordado, 'nome bordado em SVG');
+  assert.ok([...bordado[0].matchAll(/>Michelle Fracaro<\/text>/g)].length >= 3, 'relevo e pesponto em camadas');
+  assert.match(bordado[0], /class="nome pesponto"/);
+  assert.doesNotMatch(rodape, /data-molde=/);
   assert.match(rodape, /© 2026 Michelle Fracaro/);
 });
