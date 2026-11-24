@@ -1,34 +1,49 @@
 # Conteúdo a confirmar com a Michelle
 
-Ela respondeu às perguntas em 22/11/2026 e testou o site no celular, no iPad e no notebook, sem problemas. Este arquivo guarda o que já foi aplicado e o que depende de material dela.
+Ela respondeu às perguntas em 22/11/2026 e mandou material e o currículo em 23/11/2026 (pasta `arquivos-claude/`, fora do git, porque tem dados pessoais). Este arquivo guarda o que já foi aplicado e o que ainda depende dela.
 
-## Aplicado (22/11/2026)
+## Aplicado
 
-- **Sem balé:** saíram as menções a bailarina e dança (abertura, Sobre, contato e a opção "Figurino de dança" do formulário), porque elas nichavam o portfólio para figurino. O Sobre começa com "Sou designer de moda" e a formação virou "Design de Moda, Santa Marcelina, 2026".
-- **E-mail:** moraisfracaro@gmail.com. A cidade "São Paulo" está confirmada.
-- **Anos:** Projeto ICESP e Figurino (Ele me bebeu) são de 2023, do 2º semestre. Os outros estavam certos. O ano mudou nos cards, nos projetos e em Conquistas.
-- **Rebel Noise:** a foto das três modelos (DSTcGSqgciR) virou a capa, e as outras seguem na ordem anterior.
-- **Conexões em três cards**, com o semestre em cada um:
-  - 3º semestre (2024): o editorial de Estilismo I, com as fotos de fundo azul (C-TDNTMPGlH, C-TC7DVPA6D, C-TDYQsPifA), com crédito de Rogério Affonso;
-  - 4º semestre (2024): o card que já existia;
-  - 5º semestre (2025): Superfícies, "vertente mais comercial" (DLRDBq3u3uv, DLRCrikODYT, DLRDi6Guk3h).
-- **Projeto ICESP:** ficou só com as duas primeiras fotos. Crédito: em grupo com Amanda Ramalho e Luie Grotkowsky.
-- **Figurino:** crédito "Fotografia: Rogério Affonso".
-- **Editorial Códigos:** título novo, com crédito do grupo do post (@amnddh e @_rafamartelli).
-- **RevelarSP: Multiculturalidade:** o nome coube. Crédito "Fotos: Debby Gram".
-- **Sem crédito:** o Autorretrato e o Anel Paralelo (ela não quer a orientação no card).
-- **Bastidores:** as legendas e o link do YouTube dizem que é Conexões do 4º semestre.
+- **Sem balé** (22/11): saíram as menções a bailarina e dança. O Sobre começa com "Sou designer de moda", com formação em Design de Moda. O currículo cita a formação em balé clássico, mas ela pediu para não usar.
+- **Sobre** (23/11): no lugar de "Também faço", entraram quatro itens: Formação, Monitoria (Criação Têxtil, para o 2º semestre), Também faço (costura, modelagem, fotografia, styling, fichas técnicas e planejamento de coleção) e Programas (Photoshop, Illustrator, InDesign, Procreate, Clo3D e Microsoft Office).
+- **E-mail** moraisfracaro@gmail.com; cidade "São Paulo" confirmada por ela. O currículo diz Guarulhos/SP; ficou São Paulo.
+- **Anos:** Projeto ICESP e Figurino são de 2023.
+- **Rebel Noise:** a capa é a foto das três modelos.
+- **Conexões em três cards:**
+  - 3º semestre (2024, fotos de fundo azul, crédito de Rogério Affonso). A ordem é 3, 2, 1, como ela pediu, com a foto mais impactante na capa.
+  - 4º semestre (2024).
+  - 5º semestre (2025, "vertente mais comercial"). A ordem é o vestido bege que faltava (DLQ80nCu_5G), depois a saia rodada, o vestido lilás e o top preto.
+  - O currículo diz "4º e 5º semestres (2024)" para Conexões, mas os três semestres seguem a explicação dela.
+- **Créditos:**
+  - ICESP: Amanda Ramalho e Luie Grotkowsky.
+  - Figurino: Rogério Affonso.
+  - Editorial Códigos: Amanda Pereira e Rafaela Martelli.
+  - RevelarSP: Debby Gram.
+- **RevelarSP:** voltou a ser só "RevelarSP" (23/11).
+- **Peça de Joalheria (2024):** novo card com as 3 fotos do post DAW6MWMsOKh. O link leva ao reel de processo DAWxDzBB_Sx.
+- **Bastidores do TCC (23/11), 5 itens na ordem dela:**
+  1. Pesquisa: "Extração cromática para definição da cartela de cores".
+  2. Superfícies: "Testes e escolha das superfícies para a coleção".
+  3. Protótipos: legenda nossa, "As primeiras telas das peças, que ainda mudaram até o desfile".
+  4. Desfile.
+  5. Banca, com o vídeo novo e a legenda "Projeto bidimensional: croquis, cartela de cores e book".
+- **Conquistas no formato do currículo** (23/11):
+  - TCC (12 looks), 2026;
+  - Monitora de Criação Têxtil, 2025;
+  - Conexões no desfile de alunos, 2024;
+  - ICESP, 2023;
+  - RevelarSP, 2023.
+  - O estágio em social media na La Leona Boutique ficou de fora; perguntar se ela quer incluir.
 
 ## Esperando material dela
 
-- **"Também faço":** ela vai mandar uma mensagem com outras coisas que faz, para colocar no Sobre.
-- **Da Ausência à Presença (TCC):** trocar a capa por uma foto do editorial que ela vai postar, e as fotos do projeto pelos desenhos dos looks (já postados) e pelas fotos que ela posta até 10/12. Haverá fotos novas no dia 8/12. O download automático do Instagram falhou em 22/11 (o Instagram pede login), então é preciso baixar com login ou ela mandar os arquivos.
-- **Anéis:** entram os outros dois anéis com post de processo. Ela pode mandar o vídeo, e o site leva ao post do processo. Ainda não temos esses posts nem os links. Os posts "Peça de Joalheria" de 25/09/2024 (DAW569usXtx, DAW6MWMsOKh, DAW6V-jsUbr) podem ser um deles; confirmar.
-- **Bastidores do TCC:** ela tem croquis, modelagem, costura, testes e foto ou vídeo do desfile, e acha que ficaria mais interessante que as fotos atuais, que vêm de projetos diferentes. Ela também vai mandar outro vídeo da banca final para substituir o 4º item (Banca).
-- **Em movimento:** na terça (24/11) ela pega na faculdade as fotos e os vídeos do desfile. A seção pode voltar com eles.
-- **Conquistas "tipo do meu currículo":** ela não lembra se mandou o currículo. Pedir, para alinhar formato e marcos.
+- **Vídeo dos processos do TCC:** vai para o Instagram e o YouTube. Quando sair, incorporar o vídeo do YouTube em Bastidores, no lugar do link do processo de Conexões.
+- **Fotos do primeiro editorial do TCC:** ela posta junto com o vídeo. Uma delas entra como capa de Da Ausência à Presença, no lugar do croqui do primeiro line-up.
+- **Segundo ensaio (8/12):** ela posta até 10/12 e manda depois.
+- **Anel de 2026:** os reels Df5gnsRsSON e Df5gdOGsbd6 não baixam sem login no Instagram. Pedir as fotos do anel em arquivo, e o nome da peça se tiver.
+- **Bastidores, item 4 do pedido:** ela disse que ainda vai mandar mais material.
+- **Em movimento:** ela topou, mas ainda está juntando os vídeos do desfile.
 
 ## Ainda sem resposta clara
 
-- **Varal no lugar da grade:** ela não comentou o varal em si, mas viu o site nos três aparelhos e disse que deu tudo certo. Vale uma confirmação rápida.
-- **Manequim com saia de tule na abertura:** a ideia veio do conceito de balé. Ele não cita dança, mas lembra um tutu. Perguntar se ela quer manter.
+- **Varal no lugar da grade** e **manequim com saia de tule** (que lembra um tutu): ela não respondeu.

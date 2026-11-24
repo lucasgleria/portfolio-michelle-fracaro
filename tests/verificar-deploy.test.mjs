@@ -32,8 +32,8 @@ test('falha se uma mídia não existir', async () => {
 });
 
 test('falha se a mídia vier com o tipo errado', async () => {
-  const f = await verificar(BASE, falso({ 'assets/video/tgi-movimento.mp4': { status: 200, type: 'text/html', body: '' } }));
-  assert.ok(f.some(x => x.includes('assets/video/tgi-movimento.mp4')));
+  const f = await verificar(BASE, falso({ 'assets/video/tgi-banca.mp4': { status: 200, type: 'text/html', body: '' } }));
+  assert.ok(f.some(x => x.includes('assets/video/tgi-banca.mp4')));
 });
 
 test('falha se arquivo interno for servido', async () => {

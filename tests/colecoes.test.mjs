@@ -3,14 +3,16 @@ import assert from 'node:assert/strict';
 import { secao, tags, dialogo } from './pagina.mjs';
 
 const TITULOS = ['Da Ausência à Presença', 'Rebel Noise', 'Conexões', 'Conexões', 'Conexões', 'Projeto ICESP',
-                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP: Multiculturalidade', 'Anel Paralelo'];
+                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP', 'Peça de Joalheria', 'Anel Paralelo'];
 const SLUGS = ['da-ausencia-a-presenca', 'rebel-noise', 'conexoes-3-semestre', 'conexoes-4-semestre',
-               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'anel-paralelo'];
-const POSTS = ['DZ6G2uDs5EC', 'DSTcjAMj4sw', 'C-TDYQsPifA', 'DCzD9RwuH1y', 'DLRDi6Guk3h', 'C-S3kVzu9cL',
-               'C-S3_S5usYF', 'DHVnm1KRWLC', 'C-S0mEWOPK_', 'DDM352pu8ma'];
+               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'peca-de-joalheria',
+               'anel-paralelo'];
+// a peça de joalheria leva ao reel do processo, como ela pediu
+const POSTS = ['p/DZ6G2uDs5EC', 'p/DSTcjAMj4sw', 'p/C-TDYQsPifA', 'p/DCzD9RwuH1y', 'p/DLRDi6Guk3h', 'p/C-S3kVzu9cL',
+               'p/C-S3_S5usYF', 'p/DHVnm1KRWLC', 'p/C-S0mEWOPK_', 'reel/DAWxDzBB_Sx', 'p/DDM352pu8ma'];
 const ROTULOS = TITULOS.map((t, i) => SLUGS[i].startsWith('conexoes-') ? `${t}, ${SLUGS[i][9]}º semestre` : t);
 
-test('dez projetos no varal, na ordem combinada', () => {
+test('onze projetos no varal, na ordem combinada', () => {
   const s = secao('colecoes');
   assert.deepEqual([...s.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map(m => m[1]), TITULOS);
   assert.equal(tags('img', s)[0].src, 'assets/img/tgi-da-ausencia-a-presenca.webp');
@@ -34,10 +36,11 @@ test('cada projeto aberto tem título, mais fotos e o post certo', () => {
     assert.equal(fotos[0], capas[i]);
     const [link, ...resto] = tags('a', d);
     assert.equal(resto.length, 0);
-    assert.equal(link.href, `https://www.instagram.com/p/${POSTS[i]}/`);
+    assert.equal(link.href, `https://www.instagram.com/${POSTS[i]}/`);
     assert.equal(link.target, '_blank');
     assert.match(link.rel, /noopener/);
-    assert.equal(link['aria-label'], `${ROTULOS[i]}, abre o post no Instagram em nova aba`);
+    const oQue = POSTS[i].startsWith('reel/') ? 'o processo' : 'o post';
+    assert.equal(link['aria-label'], `${ROTULOS[i]}, abre ${oQue} no Instagram em nova aba`);
     assert.ok(tags('button', d).some(b => 'data-fecha' in b), `${slug}: sem botão de fechar`);
   });
 });
@@ -47,11 +50,16 @@ test('as três Conexões dizem o semestre, e os créditos pedidos aparecem', () 
   assert.deepEqual(metas.slice(2, 5), ['Editorial do 3º semestre', 'Coleção do 4º semestre', 'Coleção do 5º semestre']);
   assert.match(dialogo('projeto-icesp'), /Amanda Ramalho e Luie Grotkowsky/);
   assert.match(dialogo('projeto-ele-me-bebeu'), /Fotografia: Rogério Affonso/);
-  assert.match(dialogo('projeto-editorial'), /@amnddh e @_rafamartelli/);
+  assert.match(dialogo('projeto-editorial'), /Amanda Pereira e Rafaela Martelli/);
   assert.match(dialogo('projeto-revelarsp'), /Fotos: Debby Gram/);
   assert.equal(tags('img', dialogo('projeto-icesp')).length, 2);
 });
 
-test('Rebel Noise abre com a foto das três modelos', () => {
-  assert.equal(tags('img', secao('colecoes'))[1].src, 'assets/img/rebel-noise-4.webp');
+test('capas e ordens de fotos pedidas por ela', () => {
+  const capas = tags('img', secao('colecoes')).map(a => a.src);
+  assert.equal(capas[1], 'assets/img/rebel-noise-4.webp');
+  assert.deepEqual(tags('img', dialogo('projeto-conexoes-3-semestre')).map(a => a.src.slice(11)),
+    ['conexoes-3-semestre-3.webp', 'conexoes-3-semestre-2.webp', 'conexoes-3-semestre.webp']);
+  assert.deepEqual(tags('img', dialogo('projeto-conexoes-5-semestre')).map(a => a.src.slice(11)),
+    ['conexoes-5-semestre-4.webp', 'conexoes-5-semestre-3.webp', 'conexoes-5-semestre.webp', 'conexoes-5-semestre-2.webp']);
 });

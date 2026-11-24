@@ -6,8 +6,8 @@ test('mídias copiadas existem', () => {
   for (const s of ['tgi-da-ausencia-a-presenca', 'rebel-noise', 'conexoes', 'icesp', 'figurino-ele-me-bebeu',
                    'revelarsp', 'editorial', 'anel-paralelo', 'autorretrato'])
     assert.ok(existe(`assets/img/${s}.webp`), s);
-  assert.ok(existe('assets/video/tgi-movimento.mp4'));
-  assert.ok(existe('assets/video/tgi-movimento.jpg'));
+  assert.ok(existe('assets/video/tgi-banca.mp4'));
+  assert.ok(existe('assets/video/tgi-banca.jpg'));
 });
 
 test('caminhos de mídia são ASCII minúsculo e existem', () => {

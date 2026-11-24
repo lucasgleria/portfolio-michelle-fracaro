@@ -26,6 +26,8 @@ test('sem balé: ela é apresentada como designer de moda', () => {
   assert.doesNotMatch(html, /bailarin|balé|dança/i);
   assert.doesNotMatch(html, /Estilismo,|curso de Estilismo/);
   assert.match(secao('sobre'), /<p>Sou designer de moda,/);
+  assert.match(secao('sobre'), /Clo3D/);
+  assert.match(secao('sobre'), /Criação Têxtil/);
 });
 
 test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {
