@@ -27,11 +27,13 @@ export function existe(caminho) {
 }
 
 export function dimensoesWebp(caminho) {
-  // VP8X: largura/altura-1 em 24 bits LE nos bytes 24–29; VP8 (lossy): 14 bits LE nos bytes 26–29
+  // VP8X: largura/altura-1 em 24 bits LE nos bytes 24–29; VP8 (lossy): 14 bits LE nos bytes 26–29; VP8L logo abaixo
   const b = readFileSync(join(raiz, caminho));
   const tipo = b.toString('ascii', 12, 16);
   if (tipo === 'VP8X') return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
   if (tipo === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+  // VP8L (sem perdas): largura-1 e altura-1 em 14 bits cada, a partir do byte 21
+  if (tipo === 'VP8L') { const v = b.readUInt32LE(21); return { w: 1 + (v & 0x3fff), h: 1 + ((v >>> 14) & 0x3fff) }; }
   throw new Error(`WebP não suportado: ${caminho}`);
 }
 

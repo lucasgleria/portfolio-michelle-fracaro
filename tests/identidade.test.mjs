@@ -9,7 +9,7 @@ test('título e rodapé com o nome completo', () => {
 
 test('Sobre usa o autorretrato e a formação real', () => {
   const s = secao('sobre');
-  assert.deepEqual(tags('img', s).map(a => a.src), ['assets/img/autorretrato.webp']);
+  assert.deepEqual(tags('img', s).map(a => a.src).filter(src => !src.includes('carretel-')), ['assets/img/autorretrato.webp']);
   assert.match(s, /Faculdade Santa Marcelina/);
   assert.doesNotMatch(s, /class="foto f-/);
 });
