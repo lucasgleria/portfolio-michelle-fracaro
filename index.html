@@ -107,6 +107,48 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .fatos dt{font-size:13px;color:#2B4466}
 .fatos dd{margin:4px 0 0;font-family:var(--display);font-size:20px;line-height:1.3}
 @media (max-width:820px){.sobre{grid-template-columns:1fr}.fatos{grid-template-columns:1fr}}
+/* Também faço: uma fita métrica que desenrola; cada habilidade é uma marca da fita */
+.oficio h3{margin:36px 0 12px;font-family:var(--body);font-size:13px;color:#2B4466}
+.fita{--alto:44px;--risco:var(--palco);position:relative;display:flex;list-style:none;margin:0;padding:0 8px 0 0;clip-path:inset(0 0 0 0)}
+.fita:not(.enrolada){transition:clip-path 1.6s cubic-bezier(.3,.7,.2,1)}
+.fita.enrolada{clip-path:inset(0 100% 0 0)}
+.fita::after{content:"";position:absolute;right:0;top:0;width:8px;height:var(--alto);background:var(--palco);border-radius:0 3px 3px 0}
+.fita li{position:relative;flex:1 1 0;min-width:0;padding:calc(var(--alto) + 12px) 10px 0 0;font-family:var(--display);font-size:18px;line-height:1.2;
+  background:
+    linear-gradient(rgba(15,30,58,.3),rgba(15,30,58,.3)) 0 calc(var(--alto) - 1px)/100% 1px no-repeat,
+    repeating-linear-gradient(90deg,var(--risco) 0 1px,transparent 1px 10px) 0 0/100% 9px no-repeat,
+    repeating-linear-gradient(90deg,var(--risco) 0 1px,transparent 1px 50px) 0 0/100% 17px no-repeat,
+    linear-gradient(var(--tule),var(--tule)) 0 0/100% var(--alto) no-repeat}
+.fita li::before{content:"";position:absolute;left:0;top:0;width:2px;height:calc(var(--alto) + 8px);background:var(--risco)}
+.fita .cm{position:absolute;left:7px;top:20px;font-family:var(--body);font-size:12px;font-weight:500;color:var(--palco);font-variant-numeric:tabular-nums}
+@media (max-width:560px){
+  .fita{flex-direction:column;padding:0 0 8px}
+  .fita.enrolada{clip-path:inset(0 0 100% 0)}
+  .fita::after{top:auto;bottom:0;left:0;right:auto;width:var(--alto);height:8px;border-radius:0 0 3px 3px}
+  .fita li{flex:none;min-height:58px;padding:4px 0 18px calc(var(--alto) + 16px);
+    background:
+      linear-gradient(90deg,rgba(15,30,58,.3),rgba(15,30,58,.3)) calc(var(--alto) - 1px) 0/1px 100% no-repeat,
+      repeating-linear-gradient(180deg,var(--risco) 0 1px,transparent 1px 10px) 0 0/9px 100% no-repeat,
+      repeating-linear-gradient(180deg,var(--risco) 0 1px,transparent 1px 50px) 0 0/17px 100% no-repeat,
+      linear-gradient(var(--tule),var(--tule)) 0 0/var(--alto) 100% no-repeat}
+  .fita li::before{width:calc(var(--alto) + 8px);height:2px}
+  .fita .cm{left:20px;top:7px}
+}
+/* Programas: carretéis; a linha enrolada mostra o nível do currículo */
+.carreteis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
+.carreteis li{display:grid;justify-items:center;align-content:start;gap:2px;text-align:center}
+.carreteis svg{width:100%;max-width:58px;height:auto;margin-bottom:8px;overflow:visible}
+.carreteis .aba{fill:var(--palco)}
+.carreteis .miolo{fill:#C9D8EA}
+.carreteis .fio{fill:var(--linha);transform-box:fill-box;transform-origin:center;transform:scaleX(var(--n,.6))}
+.carreteis:not(.enrolada) .fio{transition:transform 1.2s cubic-bezier(.3,.7,.2,1) calc(var(--i) * 120ms)}
+.carreteis.enrolada .fio{transform:scaleX(.34)}
+.carreteis [data-nivel="1"]{--n:.5}
+.carreteis [data-nivel="2"]{--n:.72}
+.carreteis [data-nivel="3"]{--n:.94}
+.carreteis strong{font-family:var(--display);font-weight:400;font-size:17px;line-height:1.15}
+.carreteis small{font-size:12px;line-height:1.3;color:#2B4466}
+@media (max-width:560px){.carreteis{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:22px}}
 
 /* Coleções: varal de fotos. Cada peça tem altura (--h, em % da tela), proporção (--r), desnível (--y) e inclinação próprios;
    o script curva a fileira e faz as fotos balançarem com a velocidade da rolagem. */
@@ -271,9 +313,28 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       <dl class="fatos">
         <div><dt>Formação</dt><dd>Design de Moda, Santa Marcelina, 2026</dd></div>
         <div><dt>Monitoria</dt><dd>Criação Têxtil, para o 2º semestre da Santa Marcelina</dd></div>
-        <div><dt>Também faço</dt><dd>Costura, modelagem, fotografia, styling, fichas técnicas e planejamento de coleção</dd></div>
-        <div><dt>Programas</dt><dd>Photoshop, Illustrator, InDesign, Procreate, Clo3D e Microsoft Office</dd></div>
       </dl>
+      <div class="oficio">
+        <h3 id="t-faco">Também faço</h3>
+        <ol class="fita" aria-labelledby="t-faco">
+          <li><span class="cm" aria-hidden="true">10</span>Costura</li>
+          <li><span class="cm" aria-hidden="true">20</span>Modelagem</li>
+          <li><span class="cm" aria-hidden="true">30</span>Fotografia</li>
+          <li><span class="cm" aria-hidden="true">40</span>Styling</li>
+          <li><span class="cm" aria-hidden="true">50</span>Fichas técnicas</li>
+          <li><span class="cm" aria-hidden="true">60</span>Planejamento de coleção</li>
+        </ol>
+        <h3 id="t-programas">Programas</h3>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="enrolado" width="4" height="3" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="rgba(255,255,255,.22)"/></pattern></defs></svg>
+        <ul class="carreteis" aria-labelledby="t-programas">
+          <li style="--linha:#0F1E3A;--i:0" data-nivel="3"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>Photoshop</strong><small>Intermediário/<wbr>avançado</small></li>
+          <li style="--linha:#2B4466;--i:1" data-nivel="3"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>Illustrator</strong><small>Intermediário/<wbr>avançado</small></li>
+          <li style="--linha:#5B7FA6;--i:2" data-nivel="2"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>Clo3D</strong><small>Intermediário</small></li>
+          <li style="--linha:#000000;--i:3" data-nivel="2"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>Procreate</strong><small>Intermediário</small></li>
+          <li style="--linha:#3E5F8A;--i:4" data-nivel="1"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>InDesign</strong><small>Básico</small></li>
+          <li style="--linha:#8FB3D9;--i:5" data-nivel="2"><svg viewBox="0 0 64 88" aria-hidden="true"><rect class="miolo" x="24" y="10" width="16" height="68"/><g class="fio"><rect x="8" y="11" width="48" height="66" rx="3"/><rect x="8" y="11" width="48" height="66" rx="3" fill="url(#enrolado)"/></g><rect class="aba" x="3" y="2" width="58" height="9" rx="3"/><rect class="aba" x="3" y="77" width="58" height="9" rx="3"/></svg><strong>Microsoft Office</strong></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -635,6 +696,15 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   });
 
   var calmo=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Sobre: a fita métrica desenrola e os carretéis enrolam a linha quando aparecem na tela */
+  var oficio=[].slice.call(document.querySelectorAll('.fita,.carreteis'));
+  if(!calmo&&'IntersectionObserver' in window){
+    var desenrola=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('enrolada');desenrola.unobserve(e.target);}});
+    },{threshold:.35});
+    oficio.forEach(function(el){el.classList.add('enrolada');desenrola.observe(el);});
+  }
 
   /* Mostrador: a agulha aponta a seção que está no meio da tela; no topo ela fica deitada */
   var mostrador=document.querySelector('.mostrador'), agulha=mostrador.querySelector('.agulha');

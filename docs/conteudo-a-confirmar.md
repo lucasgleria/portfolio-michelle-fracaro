@@ -46,4 +46,6 @@ Ela respondeu às perguntas em 22/11/2026 e mandou material e o currículo em 23
 
 ## Ainda sem resposta clara
 
+- **Carretéis de Programas (23/11):** a linha enrolada mostra o nível do currículo. O Microsoft Office não tem nível no currículo; ficou com a mesma linha de "intermediário", sem texto de nível. Confirmar o nível do Office e se ela quer os níveis à mostra, porque o InDesign aparece como básico.
+
 - **Varal no lugar da grade** e **manequim com saia de tule** (que lembra um tutu): ela não respondeu.
