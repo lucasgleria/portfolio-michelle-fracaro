@@ -1,6 +1,6 @@
 # Conteúdo a confirmar com a Michelle
 
-Ela respondeu às perguntas em 22/11/2026 e mandou material e o currículo em 23/11/2026 (pasta `arquivos-claude/`, fora do git, porque tem dados pessoais). Este arquivo guarda o que já foi aplicado e o que ainda depende dela.
+Ela respondeu às perguntas em 22/11/2026 e mandou material e o currículo em 23/11/2026 (pasta `instagram-michelle/enviado-pela-michelle/`, fora do git, porque tem dados pessoais). Este arquivo guarda o que já foi aplicado e o que ainda depende dela.
 
 ## Aplicado
 
@@ -46,6 +46,6 @@ Ela respondeu às perguntas em 22/11/2026 e mandou material e o currículo em 23
 
 ## Ainda sem resposta clara
 
-- **Carretéis de Programas (23/11):** a linha enrolada mostra o nível do currículo. O Microsoft Office não tem nível no currículo; ficou com a mesma linha de "intermediário", sem texto de nível. Confirmar o nível do Office e se ela quer os níveis à mostra, porque o InDesign aparece como básico.
+- **Cartela de Programas (24/11):** cada programa é uma amostra de cor com o nível do currículo escrito no rótulo. O Microsoft Office não tem nível no currículo e ficou sem texto de nível. Confirmar o nível do Office e se ela quer os níveis à mostra, porque o InDesign aparece como básico.
 
 - **Varal no lugar da grade** e **manequim com saia de tule** (que lembra um tutu): ela não respondeu.

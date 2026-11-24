@@ -9,7 +9,7 @@ test('título e rodapé com o nome completo', () => {
 
 test('Sobre usa o autorretrato e a formação real', () => {
   const s = secao('sobre');
-  assert.deepEqual(tags('img', s).map(a => a.src).filter(src => !src.includes('carretel-')), ['assets/img/autorretrato.webp']);
+  assert.deepEqual(tags('img', s).map(a => a.src), ['assets/img/autorretrato.webp']);
   assert.match(s, /Faculdade Santa Marcelina/);
   assert.doesNotMatch(s, /class="foto f-/);
 });
@@ -52,13 +52,14 @@ test('rodapé é uma gaveta entreaberta com o nome bordado no forro', () => {
   assert.match(rodape, /© 2026 Michelle Fracaro/);
 });
 
-test('Também faço é uma fita métrica e Programas são carretéis com o nível do currículo', () => {
+test('Também faço é uma trena e Programas são uma cartela de cores com o nível do currículo', () => {
   const s = secao('sobre');
   const fita = s.match(/<ol class="fita"[^>]*>([\s\S]*?)<\/ol>/)[1];
   assert.deepEqual([...fita.matchAll(/<\/span>(.*?)<\/li>/g)].map(m => m[1]),
     ['Costura', 'Modelagem', 'Fotografia', 'Styling', 'Fichas técnicas', 'Planejamento de coleção']);
-  const carreteis = s.match(/<ul class="carreteis"[^>]*>([\s\S]*?)<\/ul>/)[1];
-  assert.deepEqual([...carreteis.matchAll(/data-nivel="(\d)"[\s\S]*?<strong>(.*?)<\/strong>/g)].map(m => `${m[2]}:${m[1]}`),
+  const cartela = s.match(/<ul class="cartela"[^>]*>([\s\S]*?)<\/ul>/)[1];
+  assert.deepEqual([...cartela.matchAll(/data-nivel="(\d)"[\s\S]*?<strong>(.*?)<\/strong>/g)].map(m => `${m[2]}:${m[1]}`),
     ['Photoshop:3', 'Illustrator:3', 'Clo3D:2', 'Procreate:2', 'InDesign:1', 'Microsoft Office:2']);
+  assert.match(s, /<div class="trena">\s*<span class="estojo" aria-hidden="true"><\/span>/);
   assert.doesNotMatch(s, /<dt>(Também faço|Programas)<\/dt>/);
 });
