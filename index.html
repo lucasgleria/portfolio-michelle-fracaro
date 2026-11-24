@@ -107,21 +107,18 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .fatos dt{font-size:13px;color:#2B4466}
 .fatos dd{margin:4px 0 0;font-family:var(--display);font-size:20px;line-height:1.3}
 @media (max-width:820px){.sobre{grid-template-columns:1fr}.fatos{grid-template-columns:1fr}}
-/* Também faço: uma trena; cada habilidade é uma marca da fita. --aberto (0 a 1) é quanto da fita está fora do estojo:
-   ela desenrola ao aparecer na tela e, ao passar o mouse, recolhe e volta como uma trena de verdade */
-@property --aberto{syntax:'<number>';inherits:true;initial-value:1}
+/* Também faço: uma trena; cada habilidade é uma marca da fita. --aberto (0 a 1) é quanto da fita está fora do estojo.
+   Sem script ela fica aberta; com script começa fechada e sai acompanhando o mouse, ou puxando a ponta no celular */
 .oficio{container:oficio/inline-size}
 .trena{--aberto:1;--alto:44px;position:relative;padding-left:52px}
-.trena:not(.enrolada){transition:--aberto 1.6s cubic-bezier(.3,.7,.2,1)}
-.trena.enrolada{--aberto:0}
-.trena.recolhendo{animation:recolhe 1.5s cubic-bezier(.55,0,.25,1)}
-@keyframes recolhe{0%{--aberto:1}42%{--aberto:.04}55%{--aberto:.04}100%{--aberto:1}}
-.estojo{position:absolute;left:0;top:-6px;z-index:2;width:56px;height:56px;border-radius:50%;
+.estojo{position:absolute;left:0;top:-6px;z-index:2;width:56px;height:56px;padding:0;border:0;border-radius:50%;cursor:pointer;touch-action:manipulation;
   background:radial-gradient(circle at 50% 50%,var(--tule) 0 5px,var(--palco) 5.5px 8px,transparent 8.5px),
     radial-gradient(circle at 34% 30%,#3E5F8A,var(--palco) 62%);
   box-shadow:inset 0 0 0 3px rgba(168,199,230,.18),0 6px 14px rgba(15,30,58,.28)}
 .estojo::after{content:"";position:absolute;right:-3px;top:8px;width:9px;height:24px;border-radius:2px;background:var(--palco)}
-.ponta{position:absolute;top:0;left:calc(52px + var(--aberto) * (100% - 60px));width:8px;height:var(--alto);background:var(--palco);border-radius:0 3px 3px 0}
+.ponta{position:absolute;top:0;left:calc(52px + var(--aberto) * (100% - 60px));width:8px;height:var(--alto);background:var(--palco);border-radius:0 3px 3px 0;touch-action:none;cursor:grab;z-index:3}
+.ponta::before{content:"";position:absolute;inset:-14px -16px}
+.dica-trena{position:absolute;left:66px;top:13px;font-size:13px;color:#2B4466;white-space:nowrap;pointer-events:none;opacity:clamp(0,calc(1 - var(--aberto) * 6),1)}
 .oficio h3{margin:36px 0 12px;font-family:var(--body);font-size:13px;color:#2B4466}
 .fita{--risco:var(--palco);position:relative;display:flex;list-style:none;margin:0;padding:0 8px 0 0;clip-path:inset(0 calc((1 - var(--aberto)) * 100%) 0 0)}
 .fita li{position:relative;flex:1 1 0;min-width:0;padding:calc(var(--alto) + 12px) 10px 0 0;font-family:var(--display);font-size:18px;line-height:1.2;
@@ -138,6 +135,9 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
   .estojo{left:-6px;top:0}
   .estojo::after{right:auto;top:auto;left:16px;bottom:-3px;width:24px;height:9px}
   .ponta{left:0;top:calc(52px + var(--aberto) * (100% - 60px));width:var(--alto);height:8px;border-radius:0 0 3px 3px}
+  .dica-trena{left:62px;top:18px}
+  /* em pé, a trena só ocupa o que já saiu do estojo; o resto da página desce junto com a fita */
+  .trena.interativa{height:calc(60px + var(--aberto) * var(--cheio,0px))}
   .fita{flex-direction:column;padding:0 0 8px;clip-path:inset(0 0 calc((1 - var(--aberto)) * 100%) 0)}
   .fita li{flex:none;min-height:58px;padding:4px 0 18px calc(var(--alto) + 16px);
     background:
@@ -192,7 +192,7 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .projeto::backdrop{background:var(--palco-fundo)}
 .interno{position:relative;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,1fr);height:100%}
 .galeria{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%;background:var(--preto)}
-.galeria img{flex:none;width:100%;height:100%;object-fit:contain;scroll-snap-align:center}
+.galeria img,.galeria video{flex:none;width:100%;height:100%;object-fit:contain;scroll-snap-align:center}
 .ficha{display:flex;flex-direction:column;justify-content:center;gap:20px;padding:clamp(28px,4vw,64px);border-left:1px solid var(--linha);overflow:auto}
 .ficha .meta{display:flex;gap:24px;font-size:14px;color:var(--tule)}
 .ficha h2{font-size:clamp(44px,4.8vw,80px);font-style:italic}
@@ -332,7 +332,8 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       <div class="oficio">
         <h3 id="t-faco">Também faço</h3>
         <div class="trena">
-        <span class="estojo" aria-hidden="true"></span>
+        <button type="button" class="estojo" aria-label="Abrir ou fechar a fita métrica"></button>
+        <span class="dica-trena" aria-hidden="true"></span>
         <ol class="fita" aria-labelledby="t-faco">
           <li><span class="cm" aria-hidden="true">10</span>Costura</li>
           <li><span class="cm" aria-hidden="true">20</span>Modelagem</li>
@@ -408,6 +409,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
         <div class="foto"><img src="assets/img/revelarsp.webp" alt="Roupa de papel do projeto RevelarSP" width="720" height="893" loading="lazy" decoding="async"><h3>RevelarSP</h3></div>
         <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
         <button type="button" class="abrir" data-projeto="revelarsp" aria-haspopup="dialog" aria-label="Abrir o projeto RevelarSP"></button>
+      </li>
+      <li class="peca" style="--h:46;--r:9/16;--y:12;--inclina:3deg">
+        <div class="foto"><img src="assets/img/anel-2026.webp" alt="Anel de prata e latão enrolado, com uma gota na ponta, sobre a mesa" width="720" height="1280" loading="lazy" decoding="async"><h3>Anel de 2026</h3></div>
+        <p class="meta"><span>Joalheria</span><span>2026</span></p>
+        <button type="button" class="abrir" data-projeto="anel-2026" aria-haspopup="dialog" aria-label="Abrir o projeto Anel de 2026"></button>
       </li>
       <li class="peca" style="--h:40;--r:1;--y:8;--inclina:-3deg">
         <div class="foto"><img src="assets/img/peca-de-joalheria.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async"><h3>Peça de Joalheria</h3></div>
@@ -639,7 +645,22 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>
 </dialog>
-<dialog id="projeto-peca-de-joalheria" class="projeto" aria-labelledby="t-peca-de-joalheria">
+<dialog id="projeto-anel-2026" class="projeto" aria-labelledby="t-anel-2026">
+  <div class="interno">
+    <div class="galeria" role="group" tabindex="0" aria-label="Vídeos de Anel de 2026">
+      <video src="assets/video/anel-reel.mp4" poster="assets/video/anel-reel.jpg" width="720" height="1280" controls muted loop playsinline preload="none" aria-label="O anel pronto, girando sobre a mesa"></video>
+      <video src="assets/video/anel-processo.mp4" poster="assets/video/anel-processo.jpg" width="540" height="960" controls playsinline preload="none" aria-label="O processo de fazer o anel, no ateliê"></video>
+    </div>
+    <div class="ficha">
+      <p class="meta"><span>Joalheria</span><span>2026</span></p>
+      <h2 id="t-anel-2026">Anel de 2026</h2>
+      <p>Anel feito no ateliê, do metal ao acabamento: o resultado e o processo.</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 2</span><button type="button" data-passa="1">Próxima</button></div>
+    </div>
+    <button type="button" class="fechar" data-fecha>Fechar</button>
+  </div>
+</dialog>
+<dialog id="projeto-peca-de-joalheria"class="projeto" aria-labelledby="t-peca-de-joalheria">
   <div class="interno">
     <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Peça de Joalheria">
       <img src="assets/img/peca-de-joalheria.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async">
@@ -715,24 +736,46 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
 
   var calmo=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Sobre: a trena desenrola e a cartela se abre em leque quando aparecem na tela */
-  /* observa cada título, não a fita: o navegador não avisa a entrada de um elemento todo recortado */
-  if(!calmo&&'IntersectionObserver' in window){
-    var desenrola=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){e.target.nextElementSibling.classList.remove('enrolada');desenrola.unobserve(e.target);}});
+  /* Sobre: a cartela se abre em leque quando aparece na tela (observa o título: a cartela começa fora do lugar) */
+  var tituloCartela=document.getElementById('t-programas');
+  if(!calmo&&tituloCartela&&'IntersectionObserver' in window){
+    var leque=new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){tituloCartela.nextElementSibling.classList.remove('enrolada');leque.disconnect();}
     },{rootMargin:'0px 0px -25% 0px'});
-    [].forEach.call(document.querySelectorAll('.oficio h3'),function(h){
-      h.nextElementSibling.classList.add('enrolada');desenrola.observe(h);
-    });
+    tituloCartela.nextElementSibling.classList.add('enrolada');leque.observe(tituloCartela);
   }
-  /* ao passar o mouse, a fita recolhe para o estojo e desenrola de novo */
-  var trena=document.querySelector('.trena');
-  if(!calmo&&trena&&window.matchMedia('(hover: hover)').matches){
-    trena.addEventListener('mouseenter',function(){
-      if(!trena.classList.contains('enrolada')&&!trena.classList.contains('recolhendo'))trena.classList.add('recolhendo');
-    });
-    trena.addEventListener('animationend',function(){trena.classList.remove('recolhendo');});
-  }
+
+  /* Trena: fica fechada; no mouse, a fita sai do estojo até onde o cursor está e recolhe quando ele sai.
+     Puxar a ponta (toque ou mouse) deixa a fita no comprimento solto; o estojo abre ou fecha tudo */
+  /* escopo próprio: nomes como preso e quadro já existem no varal e no manequim */
+  (function(trena){
+    if(!trena)return;
+    var fita=trena.querySelector('.fita'), estojo=trena.querySelector('.estojo'), ponta=trena.querySelector('.ponta'), dica=trena.querySelector('.dica-trena');
+    var aberto=0, alvo=0, preso=false, puxando=false, quadro=0;
+    var mouse=window.matchMedia('(hover: hover) and (pointer: fine)');
+    var emPe=function(){return getComputedStyle(fita).flexDirection==='column';};
+    var pinta=function(){trena.style.setProperty('--aberto',aberto.toFixed(4));};
+    var anda=function(){
+      quadro=0; aberto+=(alvo-aberto)*(calmo?1:.16);
+      if(Math.abs(alvo-aberto)<.002)aberto=alvo;
+      pinta(); if(aberto!==alvo)quadro=requestAnimationFrame(anda);
+    };
+    var ir=function(v){alvo=Math.max(0,Math.min(1,v)); if(!quadro)quadro=requestAnimationFrame(anda);};
+    var ate=function(e){var q=fita.getBoundingClientRect(); return emPe()?(e.clientY-q.top)/q.height:(e.clientX-q.left)/q.width;};
+    var ajusta=function(){
+      trena.style.setProperty('--cheio',fita.offsetHeight+'px');
+      dica.textContent=(mouse.matches&&!emPe())?'Passe o mouse sobre a fita':'Puxe a ponta ou toque no estojo';
+    };
+    trena.classList.add('interativa'); pinta(); ajusta();
+    window.addEventListener('resize',ajusta);
+    trena.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&!preso&&!puxando&&!emPe())ir(ate(e)+.03);});
+    trena.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&!preso&&!puxando)ir(0);});
+    ponta.addEventListener('pointerdown',function(e){puxando=true; ponta.setPointerCapture(e.pointerId); e.preventDefault();});
+    ponta.addEventListener('pointermove',function(e){if(puxando)ir(ate(e));});
+    var solta=function(){if(puxando){puxando=false; preso=alvo>.02;}};
+    ponta.addEventListener('pointerup',solta); ponta.addEventListener('pointercancel',solta);
+    estojo.addEventListener('click',function(){preso=alvo<.5; ir(preso?1:0);});
+  })(document.querySelector('.trena'));
 
   /* Mostrador: a agulha aponta a seção que está no meio da tela; no topo ela fica deitada */
   var mostrador=document.querySelector('.mostrador'), agulha=mostrador.querySelector('.agulha');
@@ -837,13 +880,13 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   }
   function indice(d){var g=d.querySelector('.galeria');return Math.round(g.scrollLeft/Math.max(1,g.clientWidth));}
   function contador(d){
-    var n=d.querySelectorAll('.galeria img').length, i=indice(d), bs=d.querySelectorAll('[data-passa]');
+    var n=d.querySelector('.galeria').children.length, i=indice(d), bs=d.querySelectorAll('[data-passa]');
     d.querySelector('.contador').textContent=(i+1)+' de '+n;
     bs[0].disabled=i<=0; bs[1].disabled=i>=n-1;
   }
   function fecha(d){
     var origem=indice(d)===0?d.querySelector('.galeria img'):null;
-    comTransicao(function(){d.close();},origem,ultimoBotao&&ultimoBotao.parentNode.querySelector('img'));
+    comTransicao(function(){d.close();[].forEach.call(d.querySelectorAll('video'),function(v){v.pause();});},origem,ultimoBotao&&ultimoBotao.parentNode.querySelector('img'));
   }
   [].forEach.call(document.querySelectorAll('.abrir'),function(b){
     var d=document.getElementById('projeto-'+b.getAttribute('data-projeto'));

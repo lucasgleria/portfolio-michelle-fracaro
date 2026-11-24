@@ -60,6 +60,6 @@ test('Também faço é uma trena e Programas são uma cartela de cores com o ní
   const cartela = s.match(/<ul class="cartela"[^>]*>([\s\S]*?)<\/ul>/)[1];
   assert.deepEqual([...cartela.matchAll(/data-nivel="(\d)"[\s\S]*?<strong>(.*?)<\/strong>/g)].map(m => `${m[2]}:${m[1]}`),
     ['Photoshop:3', 'Illustrator:3', 'Clo3D:2', 'Procreate:2', 'InDesign:1', 'Microsoft Office:2']);
-  assert.match(s, /<div class="trena">\s*<span class="estojo" aria-hidden="true"><\/span>/);
+  assert.match(s, /<div class="trena">\s*<button type="button" class="estojo" aria-label="[^"]+"><\/button>/);
   assert.doesNotMatch(s, /<dt>(Também faço|Programas)<\/dt>/);
 });

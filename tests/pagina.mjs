@@ -39,10 +39,15 @@ export function dimensoesWebp(caminho) {
 
 export function dimensoesMp4(caminho) {
   // caixa tkhd da trilha de vídeo: largura e altura em ponto fixo 16.16 nos últimos 8 bytes
+  // (a trilha de áudio também tem tkhd, mas com largura e altura 0)
   const b = readFileSync(join(raiz, caminho));
-  const inicio = b.lastIndexOf('tkhd') - 4;
-  const fim = inicio + b.readUInt32BE(inicio);
-  return { w: b.readUInt32BE(fim - 8) >>> 16, h: b.readUInt32BE(fim - 4) >>> 16 };
+  for (let i = b.indexOf('tkhd'); i >= 0; i = b.indexOf('tkhd', i + 4)) {
+    const inicio = i - 4;
+    const fim = inicio + b.readUInt32BE(inicio);
+    const w = b.readUInt32BE(fim - 8) >>> 16, h = b.readUInt32BE(fim - 4) >>> 16;
+    if (w && h) return { w, h };
+  }
+  throw new Error(`Sem trilha de vídeo em ${caminho}`);
 }
 
 export function dialogo(id) {

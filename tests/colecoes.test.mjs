@@ -3,16 +3,16 @@ import assert from 'node:assert/strict';
 import { secao, tags, dialogo } from './pagina.mjs';
 
 const TITULOS = ['Da Ausência à Presença', 'Rebel Noise', 'Conexões', 'Conexões', 'Conexões', 'Projeto ICESP',
-                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP', 'Peça de Joalheria', 'Anel Paralelo'];
+                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP', 'Anel de 2026', 'Peça de Joalheria', 'Anel Paralelo'];
 const SLUGS = ['da-ausencia-a-presenca', 'rebel-noise', 'conexoes-3-semestre', 'conexoes-4-semestre',
-               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'peca-de-joalheria',
+               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'anel-2026', 'peca-de-joalheria',
                'anel-paralelo'];
 // a peça de joalheria leva ao reel do processo, como ela pediu
 const POSTS = ['p/DZ6G2uDs5EC', 'p/DSTcjAMj4sw', 'p/C-TDYQsPifA', 'p/DCzD9RwuH1y', 'p/DLRDi6Guk3h', 'p/C-S3kVzu9cL',
-               'p/C-S3_S5usYF', 'p/DHVnm1KRWLC', 'p/C-S0mEWOPK_', 'reel/DAWxDzBB_Sx', 'p/DDM352pu8ma'];
+               'p/C-S3_S5usYF', 'p/DHVnm1KRWLC', 'p/C-S0mEWOPK_', null, 'reel/DAWxDzBB_Sx', 'p/DDM352pu8ma'];
 const ROTULOS = TITULOS.map((t, i) => SLUGS[i].startsWith('conexoes-') ? `${t}, ${SLUGS[i][9]}º semestre` : t);
 
-test('onze projetos no varal, na ordem combinada', () => {
+test('doze projetos no varal, na ordem combinada', () => {
   const s = secao('colecoes');
   assert.deepEqual([...s.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map(m => m[1]), TITULOS);
   assert.equal(tags('img', s)[0].src, 'assets/img/tgi-da-ausencia-a-presenca.webp');
@@ -31,6 +31,13 @@ test('cada projeto aberto tem título, mais fotos e o post certo', () => {
   SLUGS.forEach((slug, i) => {
     const d = dialogo(`projeto-${slug}`);
     assert.match(d, new RegExp(`<h2[^>]*>${TITULOS[i]}</h2>`));
+    if (!POSTS[i]) {
+      // o anel de 2026 é só vídeo e não tem post único para linkar
+      assert.deepEqual(tags('video', d).map(v => v.src), ['assets/video/anel-reel.mp4', 'assets/video/anel-processo.mp4']);
+      assert.equal(tags('a', d).length, 0);
+      assert.ok(tags('button', d).some(b => 'data-fecha' in b));
+      return;
+    }
     const fotos = tags('img', d).map(a => a.src);
     assert.ok(fotos.length >= 2, `${slug}: só ${fotos.length} foto`);
     assert.equal(fotos[0], capas[i]);
