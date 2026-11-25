@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import { secao, tags, dialogo } from './pagina.mjs';
 
 const TITULOS = ['Da Ausência à Presença', 'Rebel Noise', 'Conexões', 'Conexões', 'Conexões', 'Projeto ICESP',
-                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP', 'Anel Agulha', 'Peça de Joalheria', 'Anel Paralelo'];
+                 'Ele me bebeu', 'Editorial Códigos', 'RevelarSP', 'Anel Agulha', 'Anel Conexões', 'Anel Paralelo'];
 const SLUGS = ['da-ausencia-a-presenca', 'rebel-noise', 'conexoes-3-semestre', 'conexoes-4-semestre',
-               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'anel-agulha', 'peca-de-joalheria',
+               'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'anel-agulha', 'anel-conexoes',
                'anel-paralelo'];
-// a peça de joalheria leva ao reel do processo, como ela pediu
+// o Anel Conexões (2024) leva ao reel do processo, como ela pediu
 const POSTS = ['p/DZ6G2uDs5EC', 'p/DSTcjAMj4sw', 'p/C-TDYQsPifA', 'p/DCzD9RwuH1y', 'p/DLRDi6Guk3h', 'p/C-S3kVzu9cL',
                'p/C-S3_S5usYF', 'p/DHVnm1KRWLC', 'p/C-S0mEWOPK_', null, 'reel/DAWxDzBB_Sx', 'p/DDM352pu8ma'];
 const ROTULOS = TITULOS.map((t, i) => SLUGS[i].startsWith('conexoes-') ? `${t}, ${SLUGS[i][9]}º semestre` : t);

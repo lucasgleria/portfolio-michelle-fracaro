@@ -27,7 +27,7 @@ test('sem balé: ela é apresentada como designer de moda', () => {
   assert.doesNotMatch(html, /Estilismo,|curso de Estilismo/);
   assert.match(secao('sobre'), /<p>Sou designer de moda,/);
   assert.match(secao('sobre'), /Clo3D/);
-  assert.match(secao('sobre'), /Criação Têxtil/);
+  assert.match(secao('sobre'), /Criação Têxtil, para o 2º semestre da Santa Marcelina, 2025/);
 });
 
 test('o manequim avisa que dissolve ao clicar e responde ao teclado', () => {
@@ -59,7 +59,7 @@ test('Também faço é uma trena e Programas são uma cartela de cores com o ní
     ['Costura', 'Modelagem', 'Fotografia', 'Styling', 'Fichas técnicas', 'Planejamento de coleção']);
   const cartela = s.match(/<ul class="cartela"[^>]*>([\s\S]*?)<\/ul>/)[1];
   assert.deepEqual([...cartela.matchAll(/data-nivel="(\d)"[\s\S]*?<strong>(.*?)<\/strong>/g)].map(m => `${m[2]}:${m[1]}`),
-    ['Photoshop:3', 'Illustrator:3', 'Clo3D:2', 'Procreate:2', 'InDesign:1', 'Microsoft Office:2']);
+    ['Photoshop:3', 'Illustrator:3', 'Clo3D:2', 'Procreate:2', 'InDesign:1']);
   assert.match(s, /<div class="trena">\s*<button type="button" class="estojo" aria-label="[^"]+"><\/button>/);
   assert.doesNotMatch(s, /<dt>(Também faço|Programas)<\/dt>/);
 });

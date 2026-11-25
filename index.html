@@ -149,7 +149,7 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
   .fita .cm{left:20px;top:7px}
 }
 /* Programas: uma cartela de cores em leque; cada amostra é um programa, com o nível do currículo no rótulo */
-.cartela{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.cartela{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
 .cartela li{position:relative;min-width:0;display:grid;align-content:start;padding:0 0 12px;background:var(--branco);border-radius:3px;
   box-shadow:0 1px 2px rgba(15,30,58,.14),0 10px 22px rgba(15,30,58,.08);transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .35s}
 .cartela li:hover{transform:translateY(-10px) rotate(-1.5deg);box-shadow:0 2px 4px rgba(15,30,58,.14),0 18px 30px rgba(15,30,58,.16)}
@@ -218,6 +218,8 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .processo p{font-size:14px;opacity:.85}
 @media (max-width:1180px){.processo{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:820px){.processo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.filme{margin-top:clamp(32px,4vw,56px);aspect-ratio:16/9;background:#000;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.filme iframe{display:block;width:100%;height:100%;border:0}
 
 /* Conquistas */
 .linha-tempo{list-style:none;margin:0;padding:0;border-top:1px solid rgba(15,30,58,.18)}
@@ -327,7 +329,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       </div>
       <dl class="fatos">
         <div><dt>Formação</dt><dd>Design de Moda, Santa Marcelina, 2026</dd></div>
-        <div><dt>Monitoria</dt><dd>Criação Têxtil, para o 2º semestre da Santa Marcelina</dd></div>
+        <div><dt>Monitoria</dt><dd>Criação Têxtil, para o 2º semestre da Santa Marcelina, 2025</dd></div>
       </dl>
       <div class="oficio">
         <h3 id="t-faco">Também faço</h3>
@@ -351,7 +353,6 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
           <li style="--i:2;--cor:#3E5F8A" data-nivel="2"><span class="amostra" aria-hidden="true"></span><span class="codigo" aria-hidden="true">MF 03</span><strong>Clo3D</strong><small>Intermediário</small></li>
           <li style="--i:3;--cor:#5B7FA6" data-nivel="2"><span class="amostra" aria-hidden="true"></span><span class="codigo" aria-hidden="true">MF 04</span><strong>Procreate</strong><small>Intermediário</small></li>
           <li style="--i:4;--cor:#A8C7E6" data-nivel="1"><span class="amostra" aria-hidden="true"></span><span class="codigo" aria-hidden="true">MF 05</span><strong>InDesign</strong><small>Básico</small></li>
-          <li style="--i:5;--cor:#FFFFFF" data-nivel="2"><span class="amostra" aria-hidden="true"></span><span class="codigo" aria-hidden="true">MF 06</span><strong>Microsoft Office</strong></li>
         </ul>
       </div>
     </div>
@@ -416,9 +417,9 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
         <button type="button" class="abrir" data-projeto="anel-agulha" aria-haspopup="dialog" aria-label="Abrir o projeto Anel Agulha"></button>
       </li>
       <li class="peca" style="--h:40;--r:1;--y:8;--inclina:-3deg">
-        <div class="foto"><img src="assets/img/peca-de-joalheria.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async"><h3>Peça de Joalheria</h3></div>
+        <div class="foto"><img src="assets/img/anel-conexoes.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async"><h3>Anel Conexões</h3></div>
         <p class="meta"><span>Ateliê de Joalheria</span><span>2024</span></p>
-        <button type="button" class="abrir" data-projeto="peca-de-joalheria" aria-haspopup="dialog" aria-label="Abrir o projeto Peça de Joalheria"></button>
+        <button type="button" class="abrir" data-projeto="anel-conexoes" aria-haspopup="dialog" aria-label="Abrir o projeto Anel Conexões"></button>
       </li>
       <li class="peca" style="--h:36;--r:1;--y:20;--inclina:4deg">
         <div class="foto"><img src="assets/img/anel-paralelo.webp" alt="Anel Paralelo em prata" width="1440" height="1440" loading="lazy" decoding="async"><h3>Anel Paralelo</h3></div>
@@ -441,7 +442,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <li><div class="foto"><img src="assets/img/bastidores-tgi-desfile.webp" alt="Modelos com os looks da coleção no palco do desfile, diante do público" width="720" height="1280" loading="lazy" decoding="async"></div><h3>Desfile</h3><p>A coleção na passarela da Santa Marcelina.</p></li>
     <li><div class="foto"><video src="assets/video/tgi-banca.mp4" poster="assets/video/tgi-banca.jpg" width="720" height="1280" controls muted playsinline preload="metadata" aria-label="Vídeo da mesa de apresentação de Da Ausência à Presença à banca"></video></div><h3>Banca</h3><p>Projeto bidimensional: croquis, cartela de cores e book.</p></li>
   </ol>
-  <p style="margin-top:32px"><a href="https://youtu.be/TTBEE9axsPk" target="_blank" rel="noopener">Ver o processo de Conexões (4º semestre) no YouTube</a></p>
+  <div class="filme"><iframe src="https://www.youtube-nocookie.com/embed/n5n-V26Zat8" title="Processo de Da Ausência à Presença, no YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 </section>
 
 <section class="clara" id="conquistas">
@@ -451,6 +452,8 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
   </div>
   <ol class="linha-tempo">
     <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de 12 looks de conclusão do curso de Design de Moda na Santa Marcelina.</p></li>
+    <li><time datetime="2026">2026</time><h3>Fórum de Moda 2026</h3><p>Projeto selecionado para performance especial com um look no desfile do Fórum de Moda 2026 da Faculdade Santa Marcelina.</p></li>
+    <li><time datetime="2025">2025</time><h3>Estágio em social media</h3><p>La Leona Boutique, de novembro de 2025 a março de 2026.</p></li>
     <li><time datetime="2025">2025</time><h3>Monitora de Criação Têxtil</h3><p>Monitoria para alunos do 2º semestre da Faculdade Santa Marcelina.</p></li>
     <li><time datetime="2024">2024</time><h3>Conexões no desfile de alunos</h3><p>Coleção de 8 looks com estampas autorais, apresentada no desfile de alunos da Santa Marcelina.</p></li>
     <li><time datetime="2023">2023</time><h3>Projeto ICESP</h3><p>Roupas de papel criadas para celebrar o fim do tratamento de pacientes com câncer.</p></li>
@@ -660,19 +663,19 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>
 </dialog>
-<dialog id="projeto-peca-de-joalheria"class="projeto" aria-labelledby="t-peca-de-joalheria">
+<dialog id="projeto-anel-conexoes"class="projeto" aria-labelledby="t-anel-conexoes">
   <div class="interno">
-    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Peça de Joalheria">
-      <img src="assets/img/peca-de-joalheria.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async">
-      <img src="assets/img/peca-de-joalheria-2.webp" alt="O anel na mão, visto de cima" width="1080" height="1080" loading="lazy" decoding="async">
-      <img src="assets/img/peca-de-joalheria-3.webp" alt="O anel na mão, mostrando o recorte" width="1080" height="1080" loading="lazy" decoding="async">
+    <div class="galeria" role="group" tabindex="0" aria-label="Fotos de Anel Conexões">
+      <img src="assets/img/anel-conexoes.webp" alt="Anel de prata com recortes ondulados, sobre a mesa" width="1080" height="1080" loading="lazy" decoding="async">
+      <img src="assets/img/anel-conexoes-2.webp" alt="O anel na mão, visto de cima" width="1080" height="1080" loading="lazy" decoding="async">
+      <img src="assets/img/anel-conexoes-3.webp" alt="O anel na mão, mostrando o recorte" width="1080" height="1080" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
       <p class="meta"><span>Ateliê de Joalheria</span><span>2024</span></p>
-      <h2 id="t-peca-de-joalheria">Peça de Joalheria</h2>
+      <h2 id="t-anel-conexoes">Anel Conexões</h2>
       <p>Anel feito na disciplina Ateliê de Joalheria. O processo, da chapa à peça pronta, está no Instagram.</p>
       <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 3</span><button type="button" data-passa="1">Próxima</button></div>
-      <a href="https://www.instagram.com/reel/DAWxDzBB_Sx/" target="_blank" rel="noopener" aria-label="Peça de Joalheria, abre o processo no Instagram em nova aba">Ver o processo no Instagram</a>
+      <a href="https://www.instagram.com/reel/DAWxDzBB_Sx/" target="_blank" rel="noopener" aria-label="Anel Conexões, abre o processo no Instagram em nova aba">Ver o processo no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>
   </div>

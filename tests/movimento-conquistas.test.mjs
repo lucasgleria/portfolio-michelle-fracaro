@@ -23,13 +23,18 @@ test('Bastidores mostra o processo do TCC na ordem que ela mandou', () => {
   assert.match(s, /Projeto bidimensional: croquis, cartela de cores e book\./);
 });
 
-test('Bastidores leva ao vídeo de processo de Conexões', () => {
-  assert.match(secao('bastidores'), /href="https:\/\/youtu\.be\/TTBEE9axsPk"[^>]*target="_blank"[^>]*rel="noopener"/);
+test('Bastidores mostra o vídeo do processo do TCC', () => {
+  const [video] = tags('iframe', secao('bastidores'));
+  assert.equal(video.src, 'https://www.youtube-nocookie.com/embed/n5n-V26Zat8');
+  assert.ok(video.title && 'allowfullscreen' in video);
+  assert.doesNotMatch(secao('bastidores'), /TTBEE9axsPk/);
 });
 
 test('Conquistas com os marcos reais', () => {
   const s = secao('conquistas');
-  assert.deepEqual([...s.matchAll(/<time datetime="(\d{4})">/g)].map(m => m[1]), ['2026', '2025', '2024', '2023', '2023']);
+  assert.deepEqual([...s.matchAll(/<time datetime="(\d{4})">/g)].map(m => m[1]), ['2026', '2026', '2025', '2025', '2024', '2023', '2023']);
+  assert.match(s, /Fórum de Moda 2026/);
+  assert.match(s, /La Leona Boutique/);
   assert.match(s, /12 melhores projetos/);
 });
 
