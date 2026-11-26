@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { tags, existe, dimensoesWebp, dimensoesMp4 } from './pagina.mjs';
 
 test('mídias copiadas existem', () => {
-  for (const s of ['tgi-da-ausencia-a-presenca', 'rebel-noise', 'conexoes', 'icesp', 'figurino-ele-me-bebeu',
+  for (const s of ['tgi-editorial-1', 'tgi-croquis-1', 'rebel-noise', 'conexoes', 'icesp', 'figurino-ele-me-bebeu',
                    'revelarsp', 'editorial', 'anel-paralelo', 'autorretrato'])
     assert.ok(existe(`assets/img/${s}.webp`), s);
   assert.ok(existe('assets/video/tgi-banca.mp4'));

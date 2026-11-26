@@ -172,8 +172,8 @@ section{padding:clamp(72px,9vw,128px) var(--gutter)}
 .trilho{position:relative;list-style:none;margin:0;display:flex;align-items:flex-start;gap:clamp(28px,4vw,72px);padding:12px var(--gutter) 40px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--linha) transparent}
 .peca{flex:none;position:relative;margin-top:calc(var(--y) * 1svh);scroll-snap-align:center;transform-origin:50% 0;
   transform:perspective(1300px) rotateY(var(--curva,0deg)) scale(var(--longe,1)) rotate(var(--inclina)) skewX(var(--balanco,0deg))}
-.peca .foto{height:clamp(220px,calc(var(--h) * 1svh),720px);aspect-ratio:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.peca h3{position:absolute;left:7%;bottom:9%;max-width:86%;font-size:clamp(30px,3.3vw,54px);font-style:italic;line-height:.95;color:var(--tinta,var(--branco));transform:rotate(-6deg);transform-origin:0 100%;text-shadow:var(--sombra,0 2px 20px rgba(0,0,0,.5));pointer-events:none}
+.peca .foto{height:clamp(220px,calc(var(--h) * 1svh),720px);aspect-ratio:var(--r);box-shadow:0 18px 40px rgba(0,0,0,.35);container-type:inline-size}
+.peca h3{position:absolute;left:7%;bottom:9%;max-width:86%;font-size:var(--titulo,clamp(30px,3.3vw,54px));font-style:italic;line-height:.95;color:var(--tinta,var(--branco));transform:rotate(-6deg);transform-origin:0 100%;text-shadow:var(--sombra,0 2px 20px rgba(0,0,0,.5));pointer-events:none}
 .peca .meta{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-size:14px;color:var(--tule)}
 .abrir{position:absolute;inset:0;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:2px}
 .peca:hover .foto img{transform:scale(1.03)}
@@ -429,7 +429,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
         <p class="meta"><span>Roupa de papel</span><span>2023</span></p>
         <button type="button" class="abrir" data-projeto="revelarsp" aria-haspopup="dialog" aria-label="Abrir o projeto RevelarSP"></button>
       </li>
-      <li class="peca" style="--h:46;--r:9/16;--y:12;--inclina:3deg">
+      <li class="peca" style="--h:46;--r:9/16;--y:12;--inclina:3deg;--titulo:15cqi">
         <div class="foto"><img src="assets/img/anel-agulha.webp" alt="Anel de prata e latão enrolado, com uma gota na ponta, sobre a mesa" width="720" height="1280" loading="lazy" decoding="async"><h3>Anel Agulha</h3></div>
         <p class="meta"><span>Joalheria</span><span>2026</span></p>
         <button type="button" class="abrir" data-projeto="anel-agulha" aria-haspopup="dialog" aria-label="Abrir o projeto Anel Agulha"></button>
@@ -480,8 +480,8 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
     <p class="suave">Marcos da minha trajetória na moda.</p>
   </div>
   <ol class="linha-tempo">
-    <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de 12 looks de conclusão do curso de Design de Moda na Santa Marcelina.</p></li>
     <li><time datetime="2026">2026</time><h3>Fórum de Moda 2026</h3><p>Projeto selecionado para performance especial com um look no desfile do Fórum de Moda 2026 da Faculdade Santa Marcelina.</p></li>
+    <li><time datetime="2026">2026</time><h3>Projeto de graduação apresentado à banca</h3><p>Da Ausência à Presença, coleção de 12 looks de conclusão do curso de Design de Moda na Santa Marcelina.</p></li>
     <li><time datetime="2025">2025</time><h3>Estágio em social media</h3><p>La Leona Boutique, de novembro de 2025 a março de 2026.</p></li>
     <li><time datetime="2025">2025</time><h3>Monitora de Criação Têxtil</h3><p>Monitoria para alunos do 2º semestre da Faculdade Santa Marcelina.</p></li>
     <li><time datetime="2024">2024</time><h3>Conexões no desfile de alunos</h3><p>Coleção de 8 looks com estampas autorais, apresentada no desfile de alunos da Santa Marcelina.</p></li>
@@ -530,15 +530,16 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;z-i
       <img src="assets/img/tgi-editorial-6.webp" alt="Modelo de vestido vinho com mangas amplas e ombro vazado" width="1080" height="1439" loading="lazy" decoding="async">
       <img src="assets/img/tgi-editorial-7.webp" alt="Modelo inclinada, de vestido azul-marinho e vinho com franjas plissadas na cintura" width="1080" height="1440" loading="lazy" decoding="async">
       <img src="assets/img/tgi-editorial-8.webp" alt="As duas modelos lado a lado, de perfil, de mãos dadas" width="1080" height="1441" loading="lazy" decoding="async">
-      <img src="assets/img/tgi-da-ausencia-a-presenca.webp" alt="Croquis da coleção Da Ausência à Presença" width="1080" height="988" loading="lazy" decoding="async">
-      <img src="assets/img/tgi-da-ausencia-a-presenca-2.webp" alt="Segunda prancha de croquis da coleção, em tons de vinho" width="1080" height="922" loading="lazy" decoding="async">
+      <img src="assets/img/tgi-croquis-1.webp" alt="Croquis dos looks 1 a 4, em azul-marinho e preto" width="1080" height="825" loading="lazy" decoding="async">
+      <img src="assets/img/tgi-croquis-2.webp" alt="Croquis dos looks 5 a 8, entre o azul e o vinho, com o top laranja" width="1080" height="792" loading="lazy" decoding="async">
+      <img src="assets/img/tgi-croquis-3.webp" alt="Croquis dos looks 9 a 12, em vermelho, lilás e creme" width="1080" height="864" loading="lazy" decoding="async">
     </div>
     <div class="ficha">
       <p class="meta"><span>Projeto de graduação</span><span>2026</span></p>
       <h2 id="t-da-ausencia-a-presenca">Da Ausência à Presença</h2>
       <p>Moda como narrativa de reconexão humana: a falta de amor como ferida e o cuidado como a cicatriz que fica. O editorial e, no fim, os croquis da coleção.</p>
-      <p class="creditos">Criação, confecção, styling, beleza e fotografia: Michelle Fracaro. Modelos: @alice__azvd e @jumartins36</p>
-      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 10</span><button type="button" data-passa="1">Próxima</button></div>
+      <p class="creditos">Criação, confecção, styling, beleza e fotografia: Michelle&nbsp;Fracaro<br>Modelos: Alice&nbsp;Azevedo e Juliana&nbsp;Martins</p>
+      <div class="passar"><button type="button" data-passa="-1">Anterior</button><span class="contador">1 de 11</span><button type="button" data-passa="1">Próxima</button></div>
       <a href="https://www.instagram.com/p/DgKgFF-pcSx/" target="_blank" rel="noopener" aria-label="Da Ausência à Presença, abre o post no Instagram em nova aba">Ver o post no Instagram</a>
     </div>
     <button type="button" class="fechar" data-fecha>Fechar</button>

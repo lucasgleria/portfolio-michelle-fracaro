@@ -36,7 +36,8 @@ test('Bastidores tem a capa do vídeo do processo, que só carrega o YouTube ao 
 test('Conquistas com os marcos reais', () => {
   const s = secao('conquistas');
   assert.deepEqual([...s.matchAll(/<time datetime="(\d{4})">/g)].map(m => m[1]), ['2026', '2026', '2025', '2025', '2024', '2023', '2023']);
-  assert.match(s, /Fórum de Moda 2026/);
+  assert.match(s, /<li><time datetime="2026">2026<\/time><h3>Fórum de Moda 2026<\/h3>/, 'o Fórum vem primeiro, é o mais recente');
+  assert.ok(s.indexOf('Fórum de Moda') < s.indexOf('Projeto de graduação'));
   assert.match(s, /La Leona Boutique/);
   assert.match(s, /12 melhores projetos/);
 });

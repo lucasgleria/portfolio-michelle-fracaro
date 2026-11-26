@@ -59,16 +59,16 @@ test('as três Conexões dizem o semestre, e os créditos pedidos aparecem', () 
   assert.match(dialogo('projeto-ele-me-bebeu'), /Fotografia: Rogério Affonso/);
   assert.match(dialogo('projeto-editorial'), /Amanda Pereira e Rafaela Martelli/);
   assert.match(dialogo('projeto-revelarsp'), /Fotos: Debby Gram/);
-  assert.match(dialogo('projeto-da-ausencia-a-presenca'), /fotografia: Michelle Fracaro\. Modelos: @alice__azvd e @jumartins36/);
+  assert.match(dialogo('projeto-da-ausencia-a-presenca'), /fotografia: Michelle&nbsp;Fracaro<br>Modelos: Alice&nbsp;Azevedo e Juliana&nbsp;Martins/);
   assert.equal(tags('img', dialogo('projeto-icesp')).length, 2);
 });
 
 test('capas e ordens de fotos pedidas por ela', () => {
   const capas = tags('img', secao('colecoes')).map(a => a.src);
   assert.equal(capas[1], 'assets/img/rebel-noise-4.webp');
-  // TCC: o editorial novo primeiro (fundo azul, depois vinho) e as pranchas de croquis no fim
+  // TCC: o editorial novo primeiro (fundo azul, depois vinho) e as três pranchas de croquis (12 looks) no fim
   assert.deepEqual(tags('img', dialogo('projeto-da-ausencia-a-presenca')).map(a => a.src.slice(11)),
-    [1, 2, 3, 4, 5, 6, 7, 8].map(n => `tgi-editorial-${n}.webp`).concat(['tgi-da-ausencia-a-presenca.webp', 'tgi-da-ausencia-a-presenca-2.webp']));
+    [1, 2, 3, 4, 5, 6, 7, 8].map(n => `tgi-editorial-${n}.webp`).concat([1, 2, 3].map(n => `tgi-croquis-${n}.webp`)));
   assert.deepEqual(tags('img', dialogo('projeto-conexoes-3-semestre')).map(a => a.src.slice(11)),
     ['conexoes-3-semestre-3.webp', 'conexoes-3-semestre-2.webp', 'conexoes-3-semestre.webp']);
   assert.deepEqual(tags('img', dialogo('projeto-conexoes-5-semestre')).map(a => a.src.slice(11)),

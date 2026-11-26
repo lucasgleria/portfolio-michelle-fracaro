@@ -35,15 +35,16 @@ Ela respondeu às perguntas em 22/11/2026, mandou material e o currículo em 23/
   - Conexões no desfile de alunos, 2024;
   - ICESP, 2023;
   - RevelarSP, 2023.
-  - Em 25/11 entraram o Fórum de Moda 2026 (projeto selecionado para performance especial com um look no desfile) e o estágio em social media na La Leona Boutique (11/2025 a 03/2026, datas do currículo).
+  - Em 25/11 entraram o Fórum de Moda 2026, no topo por ser o mais recente, como ela pediu (projeto selecionado para performance especial com um look no desfile) e o estágio em social media na La Leona Boutique (11/2025 a 03/2026, datas do currículo).
 
-- **Editorial do TCC (25/11):** as 8 fotos dos posts DgKgFF-pcSx (fundo azul) e DgKgdgKpYvZ (fundo vinho) entraram em Da Ausência à Presença. A capa do card é a das duas modelos de pé no fundo azul; no projeto aberto vêm as 8 fotos e, no fim, as duas pranchas de croquis. O crédito segue a ficha técnica do post (criação, confecção, styling, beleza e fotografia dela; modelos @alice__azvd e @jumartins36), e o link leva ao post DgKgFF-pcSx.
-- **Fim do material do TCC (25/11):** os vídeos do desfile corromperam, e não vem mais nenhuma foto ou vídeo do TCC além do que já está no site. Bastidores fica com os 5 passos e o vídeo do processo, e a seção "Em movimento" (peças no corpo, em vídeo) não volta.
+- **Editorial do TCC (25/11):** as 8 fotos dos posts DgKgFF-pcSx (fundo azul) e DgKgdgKpYvZ (fundo vinho) entraram em Da Ausência à Presença. A capa do card é a das duas modelos de pé no fundo azul; no projeto aberto vêm as 8 fotos e, no fim, as três pranchas novas dos 12 looks, 4 por prancha (posts Df8aLnosow_, Df8aHFNMnjH e Df8aCfrMnz5), no lugar das duas antigas: 11 fotos ao todo (25/11). O crédito segue a ficha técnica do post, com as modelos na linha de baixo e pelo nome, como ela pediu: Alice Azevedo e Juliana Martins. O link leva ao post DgKgFF-pcSx.
+- **Fim do material do TCC (25/11):** os vídeos do desfile corromperam, e não vem mais nenhuma foto ou vídeo do TCC além do que já está no site. Bastidores fica com os 5 passos e o vídeo do processo.
 
 ## Esperando material dela
 
 - **Segundo ensaio (8/12):** ela posta até 10/12 e manda depois.
-- **Anel Agulha (23/11):** os dois reels do anel de 2026 entraram como vídeo no projeto "Anel Agulha". O nome é meu (a ponta do anel faz um olho de agulha, e a faixa enrolada lembra a linha); confirmar com ela ou trocar. Sem link do Instagram, porque ainda não temos os links dos reels (Df5gnsRsSON e Df5gdOGsbd6 não baixam sem login).
+- **Em movimento (25/11, por áudio):** ela quer a seção de volta (as peças no corpo, em vídeo). Manda fotos e vídeos novos depois de 8/12. Quando chegarem, a seção volta entre Coleções e Bastidores, e o teste que hoje exige que ela não exista (`tests/movimento-conquistas.test.mjs`) muda junto.
+- **Anel Agulha (23/11):** os dois reels do anel de 2026 entraram como vídeo no projeto "Anel Agulha". O nome é meu (a ponta do anel faz um olho de agulha, e a faixa enrolada lembra a linha); confirmar com ela ou trocar. Sem link do Instagram, porque ainda não temos os links dos reels (Df5gnsRsSON e Df5gdOGsbd6 não baixam sem login). Em 25/11 o título do card foi reduzido para caber inteiro.
 
 ## Ainda sem resposta clara
 
