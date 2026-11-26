@@ -8,14 +8,14 @@ const SLUGS = ['da-ausencia-a-presenca', 'rebel-noise', 'conexoes-3-semestre', '
                'conexoes-5-semestre', 'icesp', 'ele-me-bebeu', 'editorial', 'revelarsp', 'anel-agulha', 'anel-conexoes',
                'anel-paralelo'];
 // o Anel Conexões (2024) leva ao reel do processo, como ela pediu
-const POSTS = ['p/DZ6G2uDs5EC', 'p/DSTcjAMj4sw', 'p/C-TDYQsPifA', 'p/DCzD9RwuH1y', 'p/DLRDi6Guk3h', 'p/C-S3kVzu9cL',
+const POSTS = ['p/DgKgFF-pcSx', 'p/DSTcjAMj4sw', 'p/C-TDYQsPifA', 'p/DCzD9RwuH1y', 'p/DLRDi6Guk3h', 'p/C-S3kVzu9cL',
                'p/C-S3_S5usYF', 'p/DHVnm1KRWLC', 'p/C-S0mEWOPK_', null, 'reel/DAWxDzBB_Sx', 'p/DDM352pu8ma'];
 const ROTULOS = TITULOS.map((t, i) => SLUGS[i].startsWith('conexoes-') ? `${t}, ${SLUGS[i][9]}º semestre` : t);
 
 test('doze projetos no varal, na ordem combinada', () => {
   const s = secao('colecoes');
   assert.deepEqual([...s.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map(m => m[1]), TITULOS);
-  assert.equal(tags('img', s)[0].src, 'assets/img/tgi-da-ausencia-a-presenca.webp');
+  assert.equal(tags('img', s)[0].src, 'assets/img/tgi-editorial-1.webp');
   assert.doesNotMatch(s, /class="foto f-/);
 });
 
@@ -59,12 +59,16 @@ test('as três Conexões dizem o semestre, e os créditos pedidos aparecem', () 
   assert.match(dialogo('projeto-ele-me-bebeu'), /Fotografia: Rogério Affonso/);
   assert.match(dialogo('projeto-editorial'), /Amanda Pereira e Rafaela Martelli/);
   assert.match(dialogo('projeto-revelarsp'), /Fotos: Debby Gram/);
+  assert.match(dialogo('projeto-da-ausencia-a-presenca'), /fotografia: Michelle Fracaro\. Modelos: @alice__azvd e @jumartins36/);
   assert.equal(tags('img', dialogo('projeto-icesp')).length, 2);
 });
 
 test('capas e ordens de fotos pedidas por ela', () => {
   const capas = tags('img', secao('colecoes')).map(a => a.src);
   assert.equal(capas[1], 'assets/img/rebel-noise-4.webp');
+  // TCC: o editorial novo primeiro (fundo azul, depois vinho) e as pranchas de croquis no fim
+  assert.deepEqual(tags('img', dialogo('projeto-da-ausencia-a-presenca')).map(a => a.src.slice(11)),
+    [1, 2, 3, 4, 5, 6, 7, 8].map(n => `tgi-editorial-${n}.webp`).concat(['tgi-da-ausencia-a-presenca.webp', 'tgi-da-ausencia-a-presenca-2.webp']));
   assert.deepEqual(tags('img', dialogo('projeto-conexoes-3-semestre')).map(a => a.src.slice(11)),
     ['conexoes-3-semestre-3.webp', 'conexoes-3-semestre-2.webp', 'conexoes-3-semestre.webp']);
   assert.deepEqual(tags('img', dialogo('projeto-conexoes-5-semestre')).map(a => a.src.slice(11)),

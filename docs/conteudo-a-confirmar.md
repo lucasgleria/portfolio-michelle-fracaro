@@ -37,13 +37,13 @@ Ela respondeu às perguntas em 22/11/2026, mandou material e o currículo em 23/
   - RevelarSP, 2023.
   - Em 25/11 entraram o Fórum de Moda 2026 (projeto selecionado para performance especial com um look no desfile) e o estágio em social media na La Leona Boutique (11/2025 a 03/2026, datas do currículo).
 
+- **Editorial do TCC (25/11):** as 8 fotos dos posts DgKgFF-pcSx (fundo azul) e DgKgdgKpYvZ (fundo vinho) entraram em Da Ausência à Presença. A capa do card é a das duas modelos de pé no fundo azul; no projeto aberto vêm as 8 fotos e, no fim, as duas pranchas de croquis. O crédito segue a ficha técnica do post (criação, confecção, styling, beleza e fotografia dela; modelos @alice__azvd e @jumartins36), e o link leva ao post DgKgFF-pcSx.
+- **Fim do material do TCC (25/11):** os vídeos do desfile corromperam, e não vem mais nenhuma foto ou vídeo do TCC além do que já está no site. Bastidores fica com os 5 passos e o vídeo do processo, e a seção "Em movimento" (peças no corpo, em vídeo) não volta.
+
 ## Esperando material dela
 
-- **Fotos do primeiro editorial do TCC:** ela mandou os posts DgKgdgKpYvZ e DgKgFF-pcSx (25/11), mas o Instagram não deixa baixar sem login. Falta ter as fotos em arquivo; uma delas entra como capa de Da Ausência à Presença, no lugar do croqui do primeiro line-up.
 - **Segundo ensaio (8/12):** ela posta até 10/12 e manda depois.
 - **Anel Agulha (23/11):** os dois reels do anel de 2026 entraram como vídeo no projeto "Anel Agulha". O nome é meu (a ponta do anel faz um olho de agulha, e a faixa enrolada lembra a linha); confirmar com ela ou trocar. Sem link do Instagram, porque ainda não temos os links dos reels (Df5gnsRsSON e Df5gdOGsbd6 não baixam sem login).
-- **Bastidores, item 4 do pedido:** ela disse que ainda vai mandar mais material.
-- **Em movimento:** ela topou, mas ainda está juntando os vídeos do desfile.
 
 ## Ainda sem resposta clara
 

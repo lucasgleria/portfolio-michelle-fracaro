@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { html, secao, tags } from './pagina.mjs';
+import { html, secao, tags, dialogo } from './pagina.mjs';
 
 test('Bastidores tem o vídeo novo da banca, sem tocar sozinho', () => {
   const s = secao('bastidores');
@@ -14,7 +14,7 @@ test('Bastidores tem o vídeo novo da banca, sem tocar sozinho', () => {
 });
 
 test('Bastidores mostra o processo do TCC na ordem que ela mandou', () => {
-  const s = secao('bastidores');
+  const s = secao('bastidores').match(/<ol class="processo">([\s\S]*?)<\/ol>/)[1];
   assert.deepEqual(tags('img', s).map(a => a.src),
     ['assets/img/bastidores-tgi-pesquisa.webp', 'assets/img/bastidores-tgi-superficies.webp',
      'assets/img/bastidores-tgi-prototipo.webp', 'assets/img/bastidores-tgi-desfile.webp']);
@@ -23,11 +23,14 @@ test('Bastidores mostra o processo do TCC na ordem que ela mandou', () => {
   assert.match(s, /Projeto bidimensional: croquis, cartela de cores e book\./);
 });
 
-test('Bastidores mostra o vídeo do processo do TCC', () => {
-  const [video] = tags('iframe', secao('bastidores'));
-  assert.equal(video.src, 'https://www.youtube-nocookie.com/embed/n5n-V26Zat8');
-  assert.ok(video.title && 'allowfullscreen' in video);
-  assert.doesNotMatch(secao('bastidores'), /TTBEE9axsPk/);
+test('Bastidores tem a capa do vídeo do processo, que só carrega o YouTube ao abrir', () => {
+  const s = secao('bastidores');
+  assert.equal(tags('iframe', s).length, 0);
+  assert.ok(tags('button', s).some(b => b.class === 'capa-filme' && b['aria-haspopup'] === 'dialog'));
+  const [video] = tags('iframe', dialogo('filme-processo'));
+  assert.equal(video['data-src'], 'https://www.youtube-nocookie.com/embed/n5n-V26Zat8?autoplay=1&amp;rel=0');
+  assert.ok(!video.src && video.title && 'allowfullscreen' in video);
+  assert.doesNotMatch(s, /TTBEE9axsPk/);
 });
 
 test('Conquistas com os marcos reais', () => {
